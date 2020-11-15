@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="derek, 博客, 前端" />
+    <meta name="description" content="derek|博客|前端|" />
+    
+    <title>
+      陪你读书JavaScript WEB前端（二） - derek的博客
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="derek的博客" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作用域和内存"><span class="toc-text">作用域和内存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组的使用"><span class="toc-text">数组的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#特性"><span class="toc-text">特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建"><span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#检测"><span class="toc-text">检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法"><span class="toc-text">方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组的去重"><span class="toc-text">数组的去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#时间对象"><span class="toc-text">时间对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建-1"><span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法-1"><span class="toc-text">方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意-1"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数的创建"><span class="toc-text">函数的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS中的作用域"><span class="toc-text">JS中的作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IIFE方式"><span class="toc-text">IIFE方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用"><span class="toc-text">作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意-2"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          Home
+        </a>
+        
+        <a href="/archives" class="">
+          Archives
+        </a>
+        
+        <a href="/categories" class="">
+          Categories
+        </a>
+        
+        <a href="/tags" class="">
+          Tags
+        </a>
+        
+        <a href="/about" class="">
+          About
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">derek</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">derek</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            Home
+          </a>
+          
+          <a href="/archives" class="">
+            Archives
+          </a>
+          
+          <a href="/categories" class="">
+            Categories
+          </a>
+          
+          <a href="/tags" class="">
+            Tags
+          </a>
+          
+          <a href="/about" class="">
+            About
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/ddddderek" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-QQ"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">陪你读书JavaScript WEB前端（二）</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/04/16</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Note">Note</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/JavaScript">JavaScript</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><p>本文整理范围为<strong>14~20期</strong>的内容。</p>
+<h2 id="作用域和内存">作用域和内存<a class="post-anchor" href="#作用域和内存"></a></h2><ul>
+<li>声明的<code>函数</code>和<code>变量</code>如果是同名，那么在当前<code>作用域</code>下函数会覆盖变量</li>
+<li><code>作用域</code>可以嵌套，但是不可以重叠</li>
+<li><code>eval</code>，<code>with</code>可以改变<code>作用域</code>(破坏了<strong>解释器</strong>创建和管理作用域的规则，有性能问题)</li>
+</ul>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-string">'123'</span>  <br>a = <span class="hljs-literal">null</span>  <span class="hljs-comment">// 下一次垃圾回收机制循环会对变量a进行回收。</span><br></code></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>编译过程：创建一个全局作用域 => 词法语法分析 (如果发现声明语句，如果作用域有该变量/函数则忽略，如果没有则创建变量/函数并分配一定内存空间，创建该函数的作用域) => 生成一段可运行代码。<br>执行过程：可运行代码在执行时会生成<strong>作用域链</strong>。</p>
+</blockquote>
+<h2 id="数组的使用">数组的使用<a class="post-anchor" href="#数组的使用"></a></h2><h3 id="特性">特性<a class="post-anchor" href="#特性"></a></h3><blockquote>
+<p>数组中每一项都可以保存<strong>任意类型</strong>的数据。<br><strong>数组长度</strong>可以随时调整。</p>
+</blockquote>
+<h3 id="创建">创建<a class="post-anchor" href="#创建"></a></h3><ul>
+<li><code>new</code>操作符<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 只有一个数字类型参数时指的是数组的长度</span><br><span class="hljs-comment"> * 其他情况参数即是数组的内容</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">1</span>) => [empty]<br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>) => [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]<br></code></pre></td></tr></tbody></table></figure></li>
+<li><code>对象字面量</code><blockquote>
+<p>最后一项后面不能有逗号，<strong>ie7</strong>不兼容。<br>不要使用多个逗号创建空数组，不同浏览器解析方式不一样。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="检测">检测<a class="post-anchor" href="#检测"></a></h3><ul>
+<li><code>instanceof</code><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//多个iframe或多个全局环境时可能会出错</span><br><span class="hljs-keyword">var</span> arr = []<br>arr <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> <span class="hljs-comment">//返回true</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li><code>constructor</code><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//多个iframe或多个全局环境时可能会出错</span><br><span class="hljs-keyword">var</span> arr = []<br>arr.constructor == <span class="hljs-built_in">Array</span> <span class="hljs-comment">//返回true</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li><code>isArray</code><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//ES5</span><br><span class="hljs-keyword">var</span> arr = []<br><span class="hljs-built_in">Array</span>.isArray(arr) <span class="hljs-comment">//返回true</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li><code>Object.prototype.toString.call</code><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> arr = []<br><span class="hljs-built_in">Object</span>.prototype.toString.call(arr) == <span class="hljs-string">'[object Array]'</span><br></code></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<h3 id="方法">方法<a class="post-anchor" href="#方法"></a></h3><ul>
+<li>栈方法<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript">push <span class="hljs-comment">//返回操作后数组的长度</span><br>pop <span class="hljs-comment">//返回本次弹出的项</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li>队列方法<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript">unshift <span class="hljs-comment">//返回操作后数组的长度</span><br>shift <span class="hljs-comment">//返回本次弹出的项</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li>排序方法<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript">reverse <span class="hljs-comment">//反转</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 不传参数时先把数组的每一项转换成字符串，然后按照字符串的ASCALL码进行排序</span><br><span class="hljs-comment"> * 接收函数排序 sort(function(a, b) { return a - b }) </span><br><span class="hljs-comment">*/</span><br>sort<br></code></pre></td></tr></tbody></table></figure></li>
+<li>操作方法<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 原有数组不变</span><br><span class="hljs-comment"> * 默认是逗号</span><br><span class="hljs-comment">*/</span><br>join<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 原有数组不变</span><br><span class="hljs-comment"> * 一维数组会被拆分添加，二维数组里面的数组不会被拆分</span><br><span class="hljs-comment">*/</span><br>concat <br><br> <span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 原有数组不变</span><br><span class="hljs-comment"> * 返回截取后新数组(包含开始位置不包含结束位置)</span><br><span class="hljs-comment"> * 如果是负数那么就加上数组长度</span><br><span class="hljs-comment">*/</span><br>slice <br><br>splice <span class="hljs-comment">//操作后得到的数组</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li>位置方法(ES5)<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"> <span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 返回都是数字</span><br><span class="hljs-comment"> * 匹配条件是全等</span><br><span class="hljs-comment">*/</span><br>indexOf <span class="hljs-comment">//从前往后找</span><br>lastIndexOf <span class="hljs-comment">//从后往前找</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li>迭代方法(ES5)<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 参数：function(item, index, arr) {}</span><br><span class="hljs-comment"> * item 当前项</span><br><span class="hljs-comment"> * index 当前项索引</span><br><span class="hljs-comment"> * arr 数组本身</span><br><span class="hljs-comment">*/</span><br>every<br>some <br>filter <br>map <br>forEach<br></code></pre></td></tr></tbody></table></figure></li>
+<li>归并方法(ES5) <figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 参数：{param1:function(pre, current, index, arr) {}, parma2:initValue}</span><br><span class="hljs-comment"> * pre 前一项</span><br><span class="hljs-comment"> * current 当前项</span><br><span class="hljs-comment"> * index 当前项索引</span><br><span class="hljs-comment"> * arr 数组本身</span><br><span class="hljs-comment">*/</span><br>reduce <br>reduceRight<br></code></pre></td></tr></tbody></table></figure>
+<h3 id="数组的去重">数组的去重<a class="post-anchor" href="#数组的去重"></a></h3></li>
+<li>与老数组进行对比(ES3)</li>
+<li>与老数组后面的项对比(ES3)</li>
+<li>去掉重复的(ES3)</li>
+<li>对象属性名不重复方法(ES3)</li>
+<li>先进行排序再去重(ES3)</li>
+<li><code>indexOf</code>(ES5)</li>
+<li><code>Set</code><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr = []<br><br><span class="hljs-comment">//方式1</span><br><span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(arr))<br><br><span class="hljs-comment">//方式2</span><br>[...new <span class="hljs-built_in">Set</span>(arr)]<br></code></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<h3 id="注意">注意<a class="post-anchor" href="#注意"></a></h3><blockquote>
+<p>使用<strong>delete</strong>删除数组的某一项不会导致数组长度的变化，但是删除的那项的值会变成<strong>undefined</strong>。<br><strong>length</strong>属性总是返回正整数或者零，最大长度<strong>2<sup>32</sup> -2</strong>。</p>
+</blockquote>
+<h2 id="时间对象">时间对象<a class="post-anchor" href="#时间对象"></a></h2><blockquote>
+<p><strong>GMT</strong>格林威治(本身有一定误差，包含时区)。<br><strong>UTC</strong>世界协调时间。</p>
+</blockquote>
+<h3 id="创建-1">创建<a class="post-anchor" href="#创建-1"></a></h3><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() <span class="hljs-comment">//返回系统当前时间</span><br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">1</span>) <span class="hljs-comment">//返回距离1970年1毫秒的时间</span><br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">2018</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>) <span class="hljs-comment">//返回2018年11月10号</span><br><br><span class="hljs-comment">//返回1970年1月1号8点</span><br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-literal">null</span>)  <br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-literal">true</span>)<br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-literal">false</span>)<br><br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-literal">undefined</span>) <span class="hljs-comment">//返回不合法时间 Invalid Date</span><br><br><span class="hljs-comment">//参数为字符串时建议格式：月/日/年 时:分:秒</span><br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">"2014-04-15"</span>) <span class="hljs-comment">// Tue Apr 15 2014 08:00:00 GMT+0800 (中国标准时间) 包含时区信息</span><br><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">"2014/04/15"</span>) <span class="hljs-comment">// Tue Apr 15 2014 00:00:00 GMT+0800 (中国标准时间)</span><br></code></pre></td></tr></tbody></table></figure>
+
+<h3 id="方法-1">方法<a class="post-anchor" href="#方法-1"></a></h3><ul>
+<li><p>继承方法</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript">toString <span class="hljs-comment">//包括时区信息，不同宿主环境结果可能不一样</span><br>toLocalString <span class="hljs-comment">// 不包含时区信息，不同宿主环境结果可能不一样</span><br>valueOf <span class="hljs-comment">//时间对象的毫秒数</span><br>now <span class="hljs-comment">//时间对象的毫秒数，ES5</span><br></code></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>格式化方法</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//很少应用</span><br>toTimeString<br>toDateString<br>toLocalTimeString<br>toLocalDateString<br><br>toUTCString <span class="hljs-comment">//相对于UTC格式，不同宿主返回字符可能不一样，一般用于设置cookie的过期时间</span><br>toGMTStirng <span class="hljs-comment">//相对于GMT格式，一般不用</span><br></code></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>自身方法(33个)</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 28个有规律的</span><br><span class="hljs-comment"> * 年月日时分秒毫秒</span><br><span class="hljs-comment"> * set</span><br><span class="hljs-comment"> * get </span><br><span class="hljs-comment"> * UTC</span><br><span class="hljs-comment"> * no UTC</span><br><span class="hljs-comment"> * */</span><br><br><span class="hljs-comment">//特殊的5个</span><br>getTime <br>setTime<br>getDay <br>getUTCDay <br>getTimezoneOffset<br></code></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<h3 id="注意-1">注意<a class="post-anchor" href="#注意-1"></a></h3><ul>
+<li><code><del>getYear</del></code>已废弃</li>
+<li>时间对象中只有天是从1开始的，月份、星期、时分秒、毫秒都是从0开始的</li>
+<li><code>get</code>返回值都是数字，<code>set</code>返回值都是时间对象</li>
+<li><code>set</code>方法设置数值大于最大数值时，会自动进位前面的日期(年份、月份、星期、时分秒)<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 时间对象转换成毫秒数速度</span><br>valueOf == getTime > <span class="hljs-built_in">Number</span> == +(一元加) > <span class="hljs-built_in">Date</span>.parse<br></code></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<h2 id="函数的创建">函数的创建<a class="post-anchor" href="#函数的创建"></a></h2><ul>
+<li><p>函数声明语句</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">funcName</span> (<span class="hljs-params">param: 形参</span>) </span>{ 函数体 } <span class="hljs-comment">//函数体内外部都能访问函数</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li><p>函数表达式语句(匿名函数表达式语句)</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 赋值变量</span><br><span class="hljs-comment"> * 对象属性值</span><br><span class="hljs-comment"> * 回调函数</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">var</span> funcName = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">param: 形参</span>) </span>{ 函数体 }<br></code></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>函数声明语句，函数会被整体提升。函数表达式语句只会提升定义的变量，函数体不会被提升。<br>语句块中不要使用函数声明语句(严格模式下报错，普通模式下也会因为宿主环境的不同有不同的解析)。</p>
+</blockquote>
+</li>
+<li><p>命名函数表达式语句</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 函数体内部能访问函数(递归应用；调试应用)</span><br><span class="hljs-comment"> * ie8 bug: 赋值操作符右边的函数会像函数声明语句一样被解析，发生函数声明提升，</span><br><span class="hljs-comment"> * 导致函数体外面也能访问函数，造成当前作用域下的命名污染。</span><br><span class="hljs-comment"> * hack: 将变量名和函数名起成相同的。</span><br><span class="hljs-comment"> * */</span><br><span class="hljs-keyword">var</span> varName = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">funcName</span> (<span class="hljs-params">param: 形参</span>) </span>{ 函数体 }<br></code></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>箭头函数</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 不会创建自己的上下文环境</span><br><span class="hljs-comment"> * 匿名函数没有arguements对象</span><br><span class="hljs-comment"> * */</span><br>(param: 形参) => {}<br></code></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>函数生成器 </p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> * <span class="hljs-title">funcName</span> (<span class="hljs-params">param: 形参</span>) </span>{}<br></code></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>函数构造器(传参复杂需转换成字符串；解析时需调用一次eval函数；不能访问当前作用域)。</p>
+</li>
+</ul>
+<h2 id="JS中的作用域">JS中的作用域<a class="post-anchor" href="#JS中的作用域"></a></h2><h3 id="IIFE方式">IIFE方式<a class="post-anchor" href="#IIFE方式"></a></h3><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{})(); <br>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}()); <br><br><span class="hljs-keyword">var</span> a = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{} (); <br><br><span class="hljs-comment">//webpack打包后代码</span><br><span class="hljs-literal">true</span> && <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}(); <br><span class="hljs-literal">false</span> || <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}(); <br><span class="hljs-number">0</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}(); <br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 早期bootstrap源码</span><br><span class="hljs-comment"> * 一元加，一元减，位操作性能偏低，非操作性能稍微好一点 </span><br><span class="hljs-comment"> * */</span><br>+<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}() <br>-<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}()<br>~<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}()<br>!<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}() <br><br><span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{} <span class="hljs-comment">//不建议使用，可能会有歧义</span><br></code></pre></td></tr></tbody></table></figure>
+
+<h3 id="作用">作用<a class="post-anchor" href="#作用"></a></h3><ul>
+<li>避免作用域下<code>命名污染</code></li>
+<li>减少作用域的查找，对整个程序性能有提升</li>
+<li>有利于压缩(名字较长的全局变量<code>document</code>，<code>windows</code>，<code>jquery</code>可以在函数内简化D，W，$)</li>
+<li>保存<code>闭包</code>的状态(for循环中执行异步操作时，用IIFE包裹，将当前索引当做实参传进去)</li>
+<li>颠倒代码的运行顺序 <figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// UMD通用模块规范</span><br>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">funcName</span>)</span>{funcName()})(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{})<br></code></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<h3 id="注意-2">注意<a class="post-anchor" href="#注意-2"></a></h3><blockquote>
+<p>括号方式的<strong>IIFE</strong>建议在前面加上分号。<br><strong>with</strong>和<strong>try catch</strong>中的<strong>catch</strong>会创建块级作用域。</p>
+</blockquote>
+<h2 id="参考资料">参考资料<a class="post-anchor" href="#参考资料"></a></h2><p>JavaScript高级程序设计(第三版)</p>
+</body></html>
+
+  <!-- 
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+   -->
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/20200531/reading3/">陪你读书JavaScript WEB前端（三）</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/20200414/reading1/">陪你读书JavaScript WEB前端（一）</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://ddddderek.github.io">derek</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://ddddderek.github.io/20200416/reading2/">https://ddddderek.github.io/20200416/reading2/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://ddddderek.github.io">derek</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://ddddderek.github.io">derek</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 
+            |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\"],\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"\",\"access_token\":\"xxxxx\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

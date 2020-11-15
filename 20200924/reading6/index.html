@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="derek, 博客, 前端" />
+    <meta name="description" content="derek|博客|前端|" />
+    
+    <title>
+      陪你读书JavaScript WEB前端（六） - derek的博客
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="derek的博客" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#事件"><span class="toc-text">事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#事件触发的方式"><span class="toc-text">事件触发的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件的使用"><span class="toc-text">事件的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML事件的使用"><span class="toc-text">HTML事件的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML事件的注意"><span class="toc-text">HTML事件的注意</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML事件的缺陷"><span class="toc-text">HTML事件的缺陷</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性事件的使用-dom0"><span class="toc-text">属性事件的使用(dom0)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性事件的缺陷"><span class="toc-text">属性事件的缺陷</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事件监听回调的使用-dom2"><span class="toc-text">事件监听回调的使用(dom2)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件优先级"><span class="toc-text">事件优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件对象"><span class="toc-text">事件对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用属性"><span class="toc-text">常用属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用方法"><span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#鼠标事件"><span class="toc-text">鼠标事件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#鼠标事件对象属性"><span class="toc-text">鼠标事件对象属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意-1"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          Home
+        </a>
+        
+        <a href="/archives" class="">
+          Archives
+        </a>
+        
+        <a href="/categories" class="">
+          Categories
+        </a>
+        
+        <a href="/tags" class="">
+          Tags
+        </a>
+        
+        <a href="/about" class="">
+          About
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">derek</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">derek</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            Home
+          </a>
+          
+          <a href="/archives" class="">
+            Archives
+          </a>
+          
+          <a href="/categories" class="">
+            Categories
+          </a>
+          
+          <a href="/tags" class="">
+            Tags
+          </a>
+          
+          <a href="/about" class="">
+            About
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/ddddderek" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-QQ"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">陪你读书JavaScript WEB前端（六）</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/09/24</span>
+        </span>
+
+        
+
+        
+        
+        
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><p>本文整理范围为<strong>39~42期</strong>的内容。</p>
+<h2 id="事件">事件<a class="post-anchor" href="#事件"></a></h2><blockquote>
+<p><strong>事件</strong>是发生于<strong>dom</strong>元素、<strong>document</strong>对象或者<strong>window</strong>对象有关的预定义或自定义的时刻。</p>
+</blockquote>
+<h3 id="事件触发的方式">事件触发的方式<a class="post-anchor" href="#事件触发的方式"></a></h3><ul>
+<li><code>HTML</code>内联属性</li>
+<li>属性事件(dom0级)</li>
+<li>事件监听回调(dom2级)</li>
+</ul>
+<h3 id="事件的使用">事件的使用<a class="post-anchor" href="#事件的使用"></a></h3><h4 id="HTML事件的使用">HTML事件的使用<a class="post-anchor" href="#HTML事件的使用"></a></h4><p>在<code>HTML</code>中每个元素支持的每种事件的都可以用对应的<code>HTML</code>标签来指定事件，通常使用<code>on</code>加事件名称绑定，后面跟上需要执行的<code>JavaScript</code>代码。</p>
+<h4 id="HTML事件的注意">HTML事件的注意<a class="post-anchor" href="#HTML事件的注意"></a></h4><ul>
+<li><code>HTML事件</code>尽量不要使用特殊符号，如果一定要用需要转义</li>
+<li><code>HTML事件</code>执行的<code>JavaScript</code>的代码是在全局作用域下执行的</li>
+<li><code>HTML事件</code>在创建时，对应的函数内部会封装一个局部变量<code>event</code>，this指向触发事件的<code>dom</code>元素</li>
+<li>可以使用<code>setAttribute</code>对<code>HTML事件</code>内部代码进行修改</li>
+</ul>
+<h4 id="HTML事件的缺陷">HTML事件的缺陷<a class="post-anchor" href="#HTML事件的缺陷"></a></h4><ul>
+<li>时间差</li>
+<li>代码耦合度</li>
+<li>全局作用域下，不同浏览器的解析规则可能会造成差异</li>
+</ul>
+<h4 id="属性事件的使用-dom0">属性事件的使用(dom0)<a class="post-anchor" href="#属性事件的使用-dom0"></a></h4><blockquote>
+<p>添加事件: 获取节点，然后绑定事件属性，赋值事件处理函数。对应的函数内部会封装一个局部变量<strong>event</strong>，<strong>this</strong>指向触发事件的元素</p>
+</blockquote>
+<blockquote>
+<p>删除事件：获取节点，然后绑定事件属性，将处理函数设置为<strong>null</strong></p>
+</blockquote>
+<h4 id="属性事件的缺陷">属性事件的缺陷<a class="post-anchor" href="#属性事件的缺陷"></a></h4><ul>
+<li>一次只能绑定一个事件处理函数</li>
+</ul>
+<h4 id="事件监听回调的使用-dom2">事件监听回调的使用(dom2)<a class="post-anchor" href="#事件监听回调的使用-dom2"></a></h4><blockquote>
+<p><strong>dom2</strong>级事件包含<strong>事件捕获</strong>，<strong>事件目标</strong>，<strong>事件冒泡</strong>三个阶段。规范规定<strong>捕获阶段</strong>不涉及<strong>目标</strong>。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * param1：事件名称，不包含on</span><br><span class="hljs-comment"> * param2: 事件处理函数</span><br><span class="hljs-comment"> * param3: 事件执行阶段，可以传入一个Boolean值，或{capture: Boolean, once: Boolean, passive: Boolean}对象 </span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * 注意：</span><br><span class="hljs-comment"> * 事件处理函数中的 this 指向 dom元素</span><br><span class="hljs-comment"> * passive 主要是为了解决滚动，触摸等连续触发的耗费性能的事件</span><br><span class="hljs-comment"> * 同一个节点增加多个同一类型的事件监听，有一个没有指定passive，就不会对当前节点优化</span><br><span class="hljs-comment"> * 同一个节点增加多个不同类型的事件监听，后面的会失效</span><br><span class="hljs-comment">*/</span><br>addEventListener(param1, param2, param3)<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * param1：事件名称，不包含on</span><br><span class="hljs-comment"> * param2: 事件处理函数</span><br><span class="hljs-comment"> * param3: 事件执行阶段，只需传入一个Boolean值</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * 注意：</span><br><span class="hljs-comment"> * 一次只能删除冒泡或捕获阶段的一个事件处理程序</span><br><span class="hljs-comment"> * 删除的和添加的函数必须指向同一个引用</span><br><span class="hljs-comment">*/</span><br>removeEventListener(param1, param2, param3)<br></code></pre></td></tr></tbody></table></figure>
+
+<p>检查浏览器是否支持<code>passive</code>属性</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> isPassive<br><br><span class="hljs-keyword">try</span> {<br>    <span class="hljs-built_in">Object</span>.defineProperty({}, <span class="hljs-string">'passive'</span>, {<br>        <span class="hljs-keyword">get</span>: function () {<br>            isPassive = <span class="hljs-literal">true</span><br>            <span class="hljs-built_in">window</span>.addEventLister(<span class="hljs-string">'abc'</span>, <span class="hljs-literal">null</span>, isPassive)<br>        }<br>    })<br>} <span class="hljs-keyword">catch</span> (e) {<br>    <span class="hljs-comment">//</span><br>}<br></code></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 低版本ie下的dom2级事件</span><br><span class="hljs-comment"> * param1：事件名称</span><br><span class="hljs-comment"> * param2: 事件处理函数</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * 注意：</span><br><span class="hljs-comment"> * 时间处理函数在冒泡阶段执行</span><br><span class="hljs-comment"> * 事件处理函数中的 this 指向 window对象</span><br><span class="hljs-comment"> * 事件处理函数是按照书写相反的顺序执行</span><br><span class="hljs-comment"> * 删除事件时，传入的函数需要与绑定事件的函数必须为同一引用</span><br><span class="hljs-comment">*/</span><br>attachevent(param1, param2)<br>detachEvent(param1, param2)<br></code></pre></td></tr></tbody></table></figure>
+
+<h3 id="事件优先级">事件优先级<a class="post-anchor" href="#事件优先级"></a></h3><blockquote>
+<p>事件发生后，事件首先会从<strong>window</strong>对象向目标元素进行捕获，在捕获的过程中依次触发addEventListener设置为捕获的事件，进入到目标元素及冒泡阶段是按照事件书写的顺序依次执行。</p>
+</blockquote>
+<h4 id="注意">注意<a class="post-anchor" href="#注意"></a></h4><ul>
+<li><code>CSS</code>的改变不会改变事件的传播</li>
+<li>移动端的事件穿透</li>
+</ul>
+<h3 id="事件对象">事件对象<a class="post-anchor" href="#事件对象"></a></h3><h4 id="常用属性">常用属性<a class="post-anchor" href="#常用属性"></a></h4><ul>
+<li><code>bubbles</code> 返回一个布尔值表示是否是冒泡</li>
+<li><code>cancelable</code> 返回是否可以取消当前事件的默认行为</li>
+<li><code>currentTarget</code> 返回当前处理程序正在处理的元素</li>
+<li><code>eventPhase</code> 返回事件传播的当前阶段(1.捕获 2.目标 3.冒泡)</li>
+<li><code>target</code> 返回触发此事件的元素</li>
+<li><code>type</code> 返回当前 Event 对象表示的事件的名称</li>
+</ul>
+<h4 id="常用方法">常用方法<a class="post-anchor" href="#常用方法"></a></h4><ul>
+<li>preventDefault</li>
+<li>stopPropagation</li>
+<li>stopImmediatePropagation</li>
+</ul>
+<h3 id="鼠标事件">鼠标事件<a class="post-anchor" href="#鼠标事件"></a></h3><ul>
+<li><code>click</code> 单击事件</li>
+<li><code>dblclick</code> 双击事件</li>
+<li><code>contextmenu</code> 右键事件</li>
+<li><code>mousedown</code> 按下鼠标键时触发</li>
+<li><code>mouseup</code> 释放按下的鼠标键时触发</li>
+<li><code>mousemove</code> 鼠标移动事件</li>
+<li><code>mouseover</code> 移入事件</li>
+<li><code>mouseout</code> 移出事件</li>
+<li><code>mouseenter</code> 移入事件</li>
+<li><code>mouseleave</code> 移出事件</li>
+<li><code>mousewheel</code> 滚轮事件，<code>DOMMouseScroll</code>(火狐)</li>
+<li><code>select</code></li>
+</ul>
+<h4 id="鼠标事件对象属性">鼠标事件对象属性<a class="post-anchor" href="#鼠标事件对象属性"></a></h4><ul>
+<li><code>screenX/screenY</code></li>
+<li><code>clientX/clientY</code></li>
+<li><code>pageX/pageY</code>(ie9以下不支持)</li>
+<li><code>layerX/layerY</code>(ie9以下不支持，以border为参考点)</li>
+<li><code>offsetX/offsetY</code>(以content为参考点)</li>
+<li><code>movementX/movementY</code></li>
+<li><code>ctrlKey</code></li>
+<li><code>shiftKey</code></li>
+<li><code>altKey</code></li>
+<li><code>metaKey</code></li>
+<li><code>button</code> -1没按键，0主键，1辅助键，2副键</li>
+</ul>
+<h4 id="注意-1">注意<a class="post-anchor" href="#注意-1"></a></h4><ul>
+<li><code>relatedTarget</code>表示一个与事件相关的次要焦点。存在于<code>focusin</code>，<code>focusout</code>，<code>mouseover</code>，<code>mouseout</code>，<code>mouseenter</code>，<code>mouseleave</code>，<code>dragenter</code>，<code><del>dragexit</del></code>的事件对象中</li>
+<li><code>mousewheel</code>事件对象上有一个<code>wheelDelta</code>属性，滚动条向下滚时为负数值，向上滚动时是正数值，值的大小通常是120的倍数。火狐浏览器<code>DOMMouseScroll</code>事件对象上有一个<code>detail</code>属性，滚动条向上滚动是负数值，向下是正数值。<code>HTML5</code>实现了标准的<code>wheel</code>事件对象有上<code>deltaX</code>，<code>deltaY</code>，<code>deltaZ</code>等属性</li>
+<li>鼠标滚动事件与页面滚动无关，只能通过鼠标滚轮、触控板或触控设备的缩放触发</li>
+<li>鼠标滚动事件的触发与页面是否滚动到顶部和底部无关</li>
+</ul>
+<h2 id="参考资料">参考资料<a class="post-anchor" href="#参考资料"></a></h2><p>JavaScript高级程序设计(第三版)</p>
+</body></html>
+
+  <!-- 
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+   -->
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/20201113/http/">HTTP协议（web方向）</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/20200907/reading5/">陪你读书JavaScript WEB前端（五）</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://ddddderek.github.io">derek</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://ddddderek.github.io/20200924/reading6/">https://ddddderek.github.io/20200924/reading6/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://ddddderek.github.io">derek</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://ddddderek.github.io">derek</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 
+            |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\"],\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"\",\"access_token\":\"xxxxx\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

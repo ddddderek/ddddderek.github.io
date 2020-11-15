@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="derek, 博客, 前端" />
+    <meta name="description" content="derek|博客|前端|" />
+    
+    <title>
+      陪你读书JavaScript WEB前端（一） - derek的博客
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="derek的博客" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#script-标签"><span class="toc-text">script 标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标签的属性"><span class="toc-text">标签的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标签的位置"><span class="toc-text">标签的位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#嵌入代码与外部文件"><span class="toc-text">嵌入代码与外部文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-大小写"><span class="toc-text">JavaScript 大小写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标识符和注释"><span class="toc-text">标识符和注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语句"><span class="toc-text">语句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined-和-null-异同"><span class="toc-text">undefined 和 null 异同</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#用法"><span class="toc-text">用法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Boolean"><span class="toc-text">Boolean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Number-和-String"><span class="toc-text">Number 和 String</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数值转换"><span class="toc-text">数值转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object"><span class="toc-text">Object</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分类"><span class="toc-text">分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象创建"><span class="toc-text">对象创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象属性的查询"><span class="toc-text">对象属性的查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象转换"><span class="toc-text">对象转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意-1"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表达式"><span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作符"><span class="toc-text">操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一元操作符"><span class="toc-text">一元操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑运算符"><span class="toc-text">逻辑运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加减乘除和比较赋值"><span class="toc-text">加减乘除和比较赋值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语句-1"><span class="toc-text">语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础语句"><span class="toc-text">基础语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支语句"><span class="toc-text">分支语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#循环语句"><span class="toc-text">循环语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中断语句"><span class="toc-text">中断语句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          Home
+        </a>
+        
+        <a href="/archives" class="">
+          Archives
+        </a>
+        
+        <a href="/categories" class="">
+          Categories
+        </a>
+        
+        <a href="/tags" class="">
+          Tags
+        </a>
+        
+        <a href="/about" class="">
+          About
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">derek</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">derek</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            Home
+          </a>
+          
+          <a href="/archives" class="">
+            Archives
+          </a>
+          
+          <a href="/categories" class="">
+            Categories
+          </a>
+          
+          <a href="/tags" class="">
+            Tags
+          </a>
+          
+          <a href="/about" class="">
+            About
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/ddddderek" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-QQ"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">陪你读书JavaScript WEB前端（一）</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/04/14</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Note">Note</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/JavaScript">JavaScript</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><p>最近在复听沙老师的<a href="https://www.ximalaya.com/jiaoyu/3740790/" target="_blank" rel="noopener">陪你读书</a>系列教程，遂决定将之前琐碎的笔记整理成文。本文整理范围为<strong>基础知识篇即1~13期</strong>的内容，希望能给大家提供些许帮助。</p>
+<h2 id="script-标签">script 标签<a class="post-anchor" href="#script-标签"></a></h2><p><code>script</code>标签是向<code>HTML</code>插入<code>JavaScript</code>的主要方法。</p>
+<h3 id="标签的属性">标签的属性<a class="post-anchor" href="#标签的属性"></a></h3><ul>
+<li><code>async</code>异步下载(只对外部脚本有效，一般不用)</li>
+<li><code>charset</code>字符集(大多数浏览器会忽略这个值，一般不用)</li>
+<li><code>defer</code>延迟执行(只对外部脚本有效，IE7及更早版本对嵌入脚本也支持这个属性，一般不用)</li>
+<li><code>language</code><del>语言(已废弃)</del></li>
+<li><code>src</code>包含代码的外部文件</li>
+<li><code>type</code>MIME—— 多用途互联网邮件拓展，<code>language</code>的代替属性(一般不用)</li>
+</ul>
+<h3 id="标签的位置">标签的位置<a class="post-anchor" href="#标签的位置"></a></h3><p>一般情况下<code>JavaScript</code>代码放在<code>body</code>的结束标签之前，因为其是<strong>阻断式</strong>。一定要在渲染之前执行时放会放在头部，如以下两种情况：</p>
+<ul>
+<li><code>Rem</code>设置根字体的大小</li>
+<li>检测<code>CSS</code>属性兼容性</li>
+</ul>
+<h2 id="嵌入代码与外部文件">嵌入代码与外部文件<a class="post-anchor" href="#嵌入代码与外部文件"></a></h2><ul>
+<li><p>外部文件优点<br>  可维护性<br>  可缓存(避免缓存方式：浏览器设置，请求文件后加随机数)<br>  适用未来</p>
+</li>
+<li><p>嵌入代码优点<br>  减少连接数，提升性能</p>
+</li>
+</ul>
+<h2 id="注意">注意<a class="post-anchor" href="#注意"></a></h2><ul>
+<li>包含在标签内部的<code>JavaScript</code>代码将被从上至下依次<strong>解释</strong><blockquote>
+<p>解释包含<strong>预处理</strong>和<strong>执行</strong>两个过程。</p>
+</blockquote>
+</li>
+<li><code>src</code>属性可以<code>跨域</code></li>
+<li>带有<code>src</code>属性的标签只会下载并执行外部脚本文件，不会执行标签之间嵌入的代码</li>
+</ul>
+<h2 id="语法">语法<a class="post-anchor" href="#语法"></a></h2><h3 id="JavaScript-大小写">JavaScript 大小写<a class="post-anchor" href="#JavaScript-大小写"></a></h3><p><code>JavaScript</code>严格区分大小写，但在<code>HTML</code>和<code>CSS</code>中使用时是不区分大小写的。</p>
+<ul>
+<li>在<code>HTML</code>中绑定事件时，事件名不区分大小写，但等号后面的属性值是区分大小写的</li>
+<li><code>data-</code>属性 “-” 后面会被强制转换成小写</li>
+<li>在<code>JavaScript</code>代码中<code>onclick</code>等事件名称必须全部是小写</li>
+</ul>
+<h3 id="标识符和注释">标识符和注释<a class="post-anchor" href="#标识符和注释"></a></h3><p>标识符指的是变量、函数、属性的名字，或函数的参数。<br>标识符的第一个字符必须是<code>字母(包含任何语言，如汉字等)</code>、<code>下划线</code>或<code>$</code>。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//单行注释 </span><br><span class="hljs-comment">/* </span><br><span class="hljs-comment">    块级注释</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></tbody></table></figure>
+
+<h3 id="语句">语句<a class="post-anchor" href="#语句"></a></h3><blockquote>
+<p><strong>JavaScript</strong>解释器处理未在结尾处加分号的代码时，会先判断下一行的代码能否跟当前行一起执行，如果能执行就合并两行代码。如果不能执行就在行尾和下一行之间加分号执行，如果加分号还是不能执行就报错。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 不会和下面代码合并</span><br><span class="hljs-keyword">return</span> <br><span class="hljs-keyword">break</span><br><span class="hljs-keyword">continue</span>   <br><br><span class="hljs-comment">//会和下面一行结合       </span><br>++ <span class="hljs-regexp">/ --</span><br></code></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span><br><span class="hljs-keyword">var</span> b = <span class="hljs-number">2</span><br>a            <br>++<br>b  <span class="hljs-comment">//a:1 b:3</span><br></code></pre></td></tr></tbody></table></figure>
+
+<h2 id="数据类型">数据类型<a class="post-anchor" href="#数据类型"></a></h2><p><code>JavaScript</code>包含<code>Number</code>，<code>String</code>，<code>Boolean</code>，<code>undefined</code>，<code>null</code>，<code>Object</code>共<strong>(5 + 1)</strong>种数据类型。<br><code>typeof</code>操作符的返回值都是字符串:<br><code>"undefined"</code>，<code>"boolean"</code>，<code>"string"</code>，<code>"number"</code>，<code>"object"</code>，<code>"function"</code>。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-literal">true</span><br><span class="hljs-keyword">var</span> b = <span class="hljs-literal">true</span><br>alert(<span class="hljs-keyword">typeof</span> a == b) <span class="hljs-comment">//false</span><br></code></pre></td></tr></tbody></table></figure>
+
+<h3 id="undefined-和-null-异同">undefined 和 null 异同<a class="post-anchor" href="#undefined-和-null-异同"></a></h3><ul>
+<li>都只有一个值</li>
+<li>参与判断都返回<code>false</code></li>
+<li>都没有方法</li>
+<li><code>null</code>是关键字，<code>undefined</code>不是</li>
+<li><code>null</code>是特殊的对象，<code>undefined</code>本质是<code>windows</code>对象的一个属性，属性的值是未定义</li>
+<li><code>null</code>是已经初始化的，<code>undefined</code>是未初始化的</li>
+<li><code>null</code>返回值是 “object”，<code>undefined</code>是 “undefined”</li>
+<li>转换成数字时<code>null</code>返回 0，<code>undefined</code>返回<code>NaN</code></li>
+</ul>
+<h4 id="用法">用法<a class="post-anchor" href="#用法"></a></h4><ul>
+<li>当声明一个不确定是什么类型的变量时用<code>null</code></li>
+<li>当用全等检测一个值是否为空时用<code>null</code></li>
+<li>当用全等检测一个值是否存在时用<code>undedined</code></li>
+</ul>
+<h3 id="Boolean">Boolean<a class="post-anchor" href="#Boolean"></a></h3><p>只有<code>undefined</code>，<code>null</code>，<code>-0</code>，<code>0</code>，<code>NaN</code>，<code>""</code>转换为布尔类型时值为<code>false</code>，其余都为<code>true</code>。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">Boolean</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>(<span class="hljs-literal">false</span>))  <span class="hljs-comment">// true</span><br></code></pre></td></tr></tbody></table></figure>
+<p><code>Boolean()</code>等同于做两次非运算。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">Boolean</span>(param) == !!param <span class="hljs-comment">// true</span><br></code></pre></td></tr></tbody></table></figure>
+
+<h3 id="Number-和-String">Number 和 String<a class="post-anchor" href="#Number-和-String"></a></h3><ul>
+<li><p>尽量使用十进制，尽量少用十六进制，尽量不用八进制<del>(严格模式下无效)</del></p>
+</li>
+<li><p>整数范围<code>-2<sup>53</sup> ~ 2<sup>53</sup></code>，开发中尽量不要超过十六位，超过会转换成科学计数法表示</p>
+</li>
+<li><p><code>JavaScript</code>和<code>CSS</code>中小数点前可以不写数字，默认为零；小数点后面没有数字会自动转换成整数；小数点后面连续的零超过六位会转换成科学计数法表示</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-number">.5</span> => <span class="hljs-number">0.5</span><br><span class="hljs-number">1.</span> <span class="hljs-number">1.00</span> <span class="hljs-number">1.0</span> => <span class="hljs-number">1</span><br><span class="hljs-number">0.0000001</span> => <span class="hljs-number">1e-7</span><br></code></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>0/0返回<code>NaN</code>, 正数/0返回<code>Infinity</code>, 负数/0返回<code>-Infinity</code></p>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-literal">NaN</span> != <span class="hljs-literal">NaN</span> <span class="hljs-comment">// ture</span><br><span class="hljs-built_in">isNaN</span>() <span class="hljs-comment">// 判断传入的值是否能转换成数字。</span><br></code></pre></td></tr></tbody></table></figure>
+
+<h4 id="数值转换">数值转换<a class="post-anchor" href="#数值转换"></a></h4><p><code>Number</code>可以把任何数据类型转换为数字，结果一定为数字。<br><code>parseInt</code>和<code>parseFloat</code>用于转换字符串。</p>
+</li>
+</ul>
+<h3 id="Object">Object<a class="post-anchor" href="#Object"></a></h3><ul>
+<li>与原始类型不同点<br>对象有属性<br>对象有方法(特殊属性) <figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-string">'abcd'</span><br>a.len = <span class="hljs-number">4</span><br>alert(a.len)  <span class="hljs-comment">// undefined</span><br>a.toUpperCase()<br>alert(a) <span class="hljs-comment">// abcd</span><br></code></pre></td></tr></tbody></table></figure>
+对象是可以改变的，原始数据类型不能改变</li>
+</ul>
+<h4 id="分类">分类<a class="post-anchor" href="#分类"></a></h4><ul>
+<li>内部对象(17个)<ul>
+<li>错误对象</li>
+<li>常用对象(<strong>Number，String，Boolean，Array，Fuction，Object，Date，RegExp</strong>)</li>
+<li>内置对象(<strong>Math，JSON，global</strong>)</li>
+</ul>
+</li>
+<li>宿主对象(平台决定，<strong>Window，Document</strong>)</li>
+<li>自定义对象</li>
+</ul>
+<h4 id="对象创建">对象创建<a class="post-anchor" href="#对象创建"></a></h4><ul>
+<li>对象字面量</li>
+<li><code>new</code>操作符</li>
+<li><code>Object.create</code>(ES5)</li>
+</ul>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">Object</span>.create(param1, param2) <span class="hljs-comment">//param1:要继承的原型，param2:对象的描述信息</span><br></code></pre></td></tr></tbody></table></figure>
+
+<h4 id="对象属性的查询">对象属性的查询<a class="post-anchor" href="#对象属性的查询"></a></h4><ul>
+<li>对象属性查询操作符<br><code>.</code>操作符<br><code>[]</code>操作符</li>
+</ul>
+<blockquote>
+<p>解释器遇见<strong>属性查询操作符</strong>查询对象属性时，先判断操作符前面是否是<strong>null</strong>或<strong>undefined</strong>，如果是直接报错。然后继续判断是否是对象类型，如果不是转换成对象。此时操作符如果是 . 直接返回属性名所对应的值。如果是括号，那么先计算括号中的值并将结果转换成字符串，然后返回该属性名所对应的值。如果属性或者属性值不存在返回<strong>undefined</strong>。</p>
+</blockquote>
+<h4 id="对象转换">对象转换<a class="post-anchor" href="#对象转换"></a></h4><p>原始类型 to 对象：</p>
+<ul>
+<li>数字<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">123</span><br><span class="hljs-built_in">Object</span>(a) <span class="hljs-comment">// {[[PrimitiveValue]]: 123}</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li>字符串<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-string">'123'</span><br><span class="hljs-built_in">Object</span>(a) <span class="hljs-comment">// {[[PrimitiveValue]]: '123', 0: "1", 1: "2", 2: "3", length: 3, [[PrimitiveValue]]: "123"}</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li>布尔<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-literal">true</span><br><span class="hljs-built_in">Object</span>(a) <span class="hljs-comment">// {[[PrimitiveValue]]: true}</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li><code>null</code>和<code>undefined</code>转换成对象都返回<code>{}</code></li>
+</ul>
+<p>对象 to 原始数据类型：</p>
+<blockquote>
+<p>对象转换为<strong>布尔</strong>，结果一定为<strong>true</strong>。<br>对象转成<strong>数字</strong>先调用<strong>valueOf</strong>，得不到数字再调用<strong>toString</strong>。<br>对象转成<strong>字符串</strong>先调用<strong>toString</strong>，得不到字符串再调用<strong>valueOf</strong>。<br>对象转成<strong>原始值</strong>先调用<strong>valueOf</strong>，得不到原始值再调用<strong>toString</strong>。</p>
+</blockquote>
+<ul>
+<li><code>toString</code>返回带双引号的值</li>
+<li><code>valueOf</code>有原始值返回原始值，没有返回对象本身</li>
+</ul>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript">[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].toString() => <span class="hljs-string">"1,2,3"</span> <span class="hljs-comment">//toString在处理数组时的特殊情况</span><br>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).valueOf() => 距离<span class="hljs-number">1970.1</span><span class="hljs-number">.1</span>的毫秒数 <span class="hljs-comment">//valueOf在处理时间对象时的特殊情况</span><br></code></pre></td></tr></tbody></table></figure>
+<h4 id="注意-1">注意<a class="post-anchor" href="#注意-1"></a></h4><blockquote>
+<p>一个数据转换成二进制，如果前三位都是零，那么<strong>typeof</strong>的返回值为<strong>“Object”</strong>。</p>
+</blockquote>
+<h2 id="表达式">表达式<a class="post-anchor" href="#表达式"></a></h2><ul>
+<li>原始表达式<ul>
+<li>常量</li>
+<li>变量<blockquote>
+<p>使用 var 操作符定义是局部变量，反之是全局变量<br>使用 var 操作符定义不可以被删除，反之可以删除<br>使用 var 操作符定义变量，会发生<strong>声明提升</strong>，反之不会</p>
+</blockquote>
+</li>
+<li>直接量</li>
+<li>关键字</li>
+</ul>
+</li>
+<li>初始化表达式</li>
+<li>函数定义表达式</li>
+<li>函数调用表达式</li>
+<li>属性访问表达式</li>
+<li>对象创建表达式</li>
+</ul>
+<h2 id="操作符">操作符<a class="post-anchor" href="#操作符"></a></h2><blockquote>
+<p>优先级：<br>属性访问>一元操作符>乘除>加减>比较>相等>与运算>或运算>三目运算>赋值运算>逗号运算</p>
+<p>结合性：<br>所有的一元操作符，三目运算符，赋值运算符，都是右结合，其余都是左结合。</p>
+</blockquote>
+<h3 id="一元操作符">一元操作符<a class="post-anchor" href="#一元操作符"></a></h3><ul>
+<li><code>+</code>任何数据类型进行一元加操作返回结果都是数字类型</li>
+<li><code>-</code>任何数据类型进行一元减操相当于先进行一元加操作再取负数</li>
+<li><code>++</code></li>
+<li><code>--</code></li>
+<li><code>~</code>按位非<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript">~<span class="hljs-number">10</span> => <span class="hljs-number">-10</span> <span class="hljs-number">-1</span>  <span class="hljs-comment">// 如果对数字进行位非运算，结果是其取负数在减去1</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li><code>!</code>逻辑非</li>
+<li><code>typeof</code></li>
+<li><code>void</code></li>
+<li><code>delete</code>返回一个布尔值</li>
+</ul>
+<h3 id="逻辑运算符">逻辑运算符<a class="post-anchor" href="#逻辑运算符"></a></h3><ul>
+<li>与运算<ul>
+<li>两个布尔值运算时，有一个为<code>false</code>，返回<code>false</code>。两个都为<code>true</code>，返回<code>true</code></li>
+<li>如果并且 (a==1 && b==3)</li>
+<li>如果那么，短路写法(a==1 && b=3)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>或运算<ul>
+<li>两个布尔值运算时，有一个为<code>true</code>，返回<code>true</code>。两个都为<code>false</code>，返回<code>false</code></li>
+<li>或者(a==1 || b==3)</li>
+<li>如果不，那么，一般用于赋值(x = a || b)</li>
+</ul>
+</li>
+</ul>
+<h3 id="加减乘除和比较赋值">加减乘除和比较赋值<a class="post-anchor" href="#加减乘除和比较赋值"></a></h3><ul>
+<li><p>加法操作符</p>
+<blockquote>
+<p>如果两边都是<strong>数字</strong>、<strong>布尔</strong>、<strong>null</strong>或<strong>undefined</strong>类型就进行数字的相加。<br>如果两边有一个是<strong>字符串</strong>就进行字符串的相加。</p>
+</blockquote>
+</li>
+<li><p>减法操作符/乘性操作符(乘法\除法\模运算)</p>
+<blockquote>
+<p>如果操作符两边都是数字，那么直接进行计算；如果有非数字类型，先把操作数转换成数字，然后进行运算。<br>操作数有小数字类型数的时候，需要做一些处理(<strong>IEEE754</strong>浮点数问题)。<br>结果一定是数字类型。</p>
+</blockquote>
+</li>
+<li><p>关系运算符</p>
+<blockquote>
+<p>如果有一个是<strong>数字</strong>，另一个就转换成数字。<br>如果有一个数<strong>NaN</strong>，返回<strong>false</strong>。<br>结果一定是布尔类型。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-number">7</span> > <span class="hljs-number">6</span> > <span class="hljs-number">5</span> <span class="hljs-comment">//false</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li><p>相等运算符</p>
+<ul>
+<li><p>=== / !== (首先判断类型) </p>
+<blockquote>
+<p><strong>数字</strong>：比较数值是否相等 NaN != NaN。<br><strong>布尔</strong>：比较布尔值是否相等。<br><strong>字符串</strong>：比较字符串编码是否相同。<br><strong>对象</strong>：比较对象的引用。</p>
+</blockquote>
+</li>
+<li><p>== / != (会进行隐式类型转换)</p>
+<blockquote>
+<p><strong>数字</strong>、<strong>字符串</strong>、<strong>布尔</strong>混合运算时，先转换成数字，再进行比较。<br><strong>null</strong> == <strong>undefined</strong> 结果是 <strong>true</strong>。<br>如果操作数存在对象，那么把对象转换成原始值再进行比较。</p>
+</blockquote>
+<blockquote>
+<p>以上三种情况都不符合直接返回<strong>false</strong>。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>赋值运算符(左侧的值叫<strong>左值</strong>，一定是一个变量或属性。尽量不要在代码中写连续赋值)</p>
+</li>
+</ul>
+<h2 id="语句-1">语句<a class="post-anchor" href="#语句-1"></a></h2><p>语句：会促使某件事情发生的命令叫语句，一定伴有副作用。<br>副作用：运行语句或执行表达式对某些变量的值进行修改，删除，增加操作(++ ， –  ， =)。</p>
+<h3 id="基础语句">基础语句<a class="post-anchor" href="#基础语句"></a></h3><ul>
+<li>表达式语句，表达式带有副作用(++ ，-- ， = ， +=，-=，*=， /= ，%=，delete，函数调用)</li>
+<li>复合语句(代码块)</li>
+<li>空语句(解释器略过不进行任何操作，常用在代码块的开头解决压缩代码导致的异常)</li>
+<li>声明语句(<code>var</code>、<code>function</code>)</li>
+</ul>
+<h3 id="分支语句">分支语句<a class="post-anchor" href="#分支语句"></a></h3><ul>
+<li>分支语句(<code>if</code>，<code>switch</code>)<blockquote>
+<p><strong>if</strong>语句中判断条件如果是值的比较，那么用全等判断。<br><strong>switch</strong>语句中的<strong>case</strong>是全等判断。<br><strong>switch</strong>语句中的<strong>default</strong>可以写在任意位置，始终最后执行。<br><strong>switch</strong>语句中的<strong>case</strong>会从上到下依次执行，不会因为某一条件符合就中断执行，所以一般在<strong>case</strong>中加<strong>break</strong>。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="循环语句">循环语句<a class="post-anchor" href="#循环语句"></a></h3><ul>
+<li><p>循环语句(<code>while</code>，<code>do while</code>，<code>for</code>，<code>for in</code>)</p>
+<ul>
+<li><p>for</p>
+<ul>
+<li>循环判断表达式直接返回布尔类型会减少一次隐式类型转换</li>
+<li>循环表达式右侧为数组长度时，建议先定义数组长度为一个变量</li>
+</ul>
+</li>
+<li><p>for-in</p>
+<blockquote>
+<p>该循环主要用来<strong>枚举</strong>对象的属性。先对<strong>in</strong>操作符后面进行对象类型的转换，如果是<strong>null</strong>或<strong>undefined</strong>就报错(ES5不报错，变更为不执行循环体)，如果是其他的原始类型转换成<strong>包装对象</strong>。然后把对象属性取出来运行<strong>in</strong>操作符前面的表达式，并将属性赋值给表达式的结果。</p>
+</blockquote>
+<ul>
+<li><code>in</code>前面的表达式可以是任意的，但结果一定是一个<strong>左值</strong>(变量，对象的属性)</li>
+<li><code>in</code>前面的表达式每次循环后都会被执行一次 </li>
+<li><code>in</code>后面的表达式如果是原始类型时，数字类型和布尔类型不执行任何操作，字符串返回<code>0 ~ array.length-1</code></li>
+<li>不是所有的属性都可以被<code>枚举</code>，如：<code>length</code>，<code>toString</code>，<code>valueOf</code>，<code>PrimitiveValue</code>等</li>
+<li>如果一个对象继承了某个对象，继承的属性和方法也会被<code>枚举</code>出来</li>
+<li>如果对没有被<code>枚举</code>的属性进行删除，或者动态增加对象的属性，那么这些属性不会被<code>枚举</code>出来</li>
+<li>大部分浏览器是按照属性的定义的顺序<code>枚举</code>(先定义先枚举)；如果属性是整数类型的(0,1,2…)，那么就按照数字的顺序枚举</li>
+<li>不建议在<code>for-in</code>循环中进行数组的操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="中断语句">中断语句<a class="post-anchor" href="#中断语句"></a></h3><ul>
+<li><code>continue</code>停止当前的某一次循环或者<code>switch</code>分支，可以与<code>标签语句</code>配合使用</li>
+<li><code>break</code>退出当前的循环或者<code>switch</code>语句，可以与<code>标签语句</code>配合使用</li>
+<li><code>return</code>结束所在函数并返回操作符后在同一行的表达式</li>
+<li><code>throw</code>停止运行<code>JavaScript</code>，依次查找异常处理程序</li>
+</ul>
+<h2 id="参考资料">参考资料<a class="post-anchor" href="#参考资料"></a></h2><p>JavaScript高级程序设计(第三版)</p>
+</body></html>
+
+  <!-- 
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+   -->
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/20200416/reading2/">陪你读书JavaScript WEB前端（二）</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/20200412/hexo_2/">从零开始搭建个人博客（二）</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://ddddderek.github.io">derek</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://ddddderek.github.io/20200414/reading1/">https://ddddderek.github.io/20200414/reading1/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://ddddderek.github.io">derek</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://ddddderek.github.io">derek</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 
+            |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\"],\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"\",\"access_token\":\"xxxxx\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

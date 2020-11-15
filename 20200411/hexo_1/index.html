@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="derek, 博客, 前端" />
+    <meta name="description" content="derek|博客|前端|" />
+    
+    <title>
+      从零开始搭建个人博客（一） - derek的博客
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="derek的博客" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是Hexo"><span class="toc-text">什么是Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo的安装"><span class="toc-text">Hexo的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署到线上"><span class="toc-text">部署到线上</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建仓库"><span class="toc-text">创建仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建-pages-仓库"><span class="toc-text">创建 pages 仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建站点目录仓库"><span class="toc-text">创建站点目录仓库</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署"><span class="toc-text">部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#链接远程仓库"><span class="toc-text">链接远程仓库</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-text">结语</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          Home
+        </a>
+        
+        <a href="/archives" class="">
+          Archives
+        </a>
+        
+        <a href="/categories" class="">
+          Categories
+        </a>
+        
+        <a href="/tags" class="">
+          Tags
+        </a>
+        
+        <a href="/about" class="">
+          About
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">derek</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">derek</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            Home
+          </a>
+          
+          <a href="/archives" class="">
+            Archives
+          </a>
+          
+          <a href="/categories" class="">
+            Categories
+          </a>
+          
+          <a href="/tags" class="">
+            Tags
+          </a>
+          
+          <a href="/about" class="">
+            About
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/ddddderek" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-QQ"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">从零开始搭建个人博客（一）</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/04/11</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Usage">Usage</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/Hexo">Hexo</a>
+                  
+                
+                  
+                    <a href="/tags/Github">Github</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><p>相信大多数开发者都曾想拥有一个个人博客，记录自己生活所见、工作感悟、人生感想，<del>当然也可能是为了炫技和装X</del>。但是服务器地选配，页面、业务流程的设计和开发等带来的成本，使大家望而却步。本文将使用 <code>Hexo</code>和 <code>Github</code> 带你实现“零成本”的个人博客，让你更多的专注在写作本身。</p>
+<h2 id="什么是Hexo">什么是Hexo<a class="post-anchor" href="#什么是Hexo"></a></h2><blockquote>
+<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<p>来源：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo文档</a></p>
+</blockquote>
+<h2 id="Hexo的安装">Hexo的安装<a class="post-anchor" href="#Hexo的安装"></a></h2><p><code>hexo-cli</code> 的安装是基于 <code>Nodejs</code> 的，对于<code>Nodejs</code> 的安装这里不在赘述，可以自行在<a href="http://nodejs.cn/" target="_blank" rel="noopener">官网</a>下载安装，需要注意<strong>Nodejs版本不能低于8.10</strong>。</p>
+<p>经常使用 <code>npm</code> 的同学应该知道，它的镜像在国外，依赖包的安装速度很慢，甚至有时直接被墙掉，所以这里建议大家将镜像源切换为 <a href="https://developer.aliyun.com/mirror/NPM?from=tnpm" target="_blank" rel="noopener">淘宝镜像</a>:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">npm install -g cnpm --registry=https://registry.npm.taobao.org<br>cnpm install [packageName] //安装成功后，可以这样使用<br></code></pre></td></tr></tbody></table></figure>
+<p>接下来安装 <code>hexo-cli</code>：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">cnpm install -g hexo-cli<br></code></pre></td></tr></tbody></table></figure>
+<p>创建一个新的 <code>blog</code>文件夹，使用命令行工具切换到<code>blog</code>目录下，初始化工程：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">hexo init<br></code></pre></td></tr></tbody></table></figure>
+<p>执行成功后，<code>blog</code> 目录如下：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">├── _config.yml  //站点配置文件<br>├── package.json //包管理文件<br>├── scaffolds    //模板文件夹<br>├── source       //资源文件夹<br>|   ├── _drafts  //草稿文件夹<br>|   └── _posts   //文章文件夹<br>└── themes       //主题文件夹<br></code></pre></td></tr></tbody></table></figure>
+<p>安装工程所需要的依赖：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">cnpm install<br></code></pre></td></tr></tbody></table></figure>
+<p>启动工程，在浏览器查看页面，地址为 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> ：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">hexo server<br></code></pre></td></tr></tbody></table></figure>
+<p><code>hexo-cli</code>更多常用指令：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">hexo new post postName // blog/<span class="hljs-built_in">source</span>/_posts/name 生成一篇文章<br>hexo new page pageName // blog/<span class="hljs-built_in">source</span>/name 生成一个页面<br>hexo new draft draftName //blog/<span class="hljs-built_in">source</span>/_drafts/draftName 生成一篇草稿<br>hexo publish draft draftName //发表一篇草稿<br>hexo generate // 生成静态文件<br>hexo clean // 清除缓存文件和静态文件<br>hexo deploy // 部署到远程服务器<br></code></pre></td></tr></tbody></table></figure>
+
+<h2 id="部署到线上">部署到线上<a class="post-anchor" href="#部署到线上"></a></h2><p>现在我们已经可以创建、编辑文章，并能在本地服务上预览我们的博客了。但是写博客不就是为了与大家进行技术交流嘛（<del>装X</del>），况且我们代码保存在本地，万一我们的硬盘坏了岂不是多年心血付之一炬，由此便引出了接下来的内容——<code>Github</code>（江湖人称大型男性交友网站）。</p>
+<h3 id="创建仓库">创建仓库<a class="post-anchor" href="#创建仓库"></a></h3><p>如果你已经认真阅读了 <code>hexo</code> 的官方文档，那么你一定会看到如下建议：</p>
+<blockquote>
+<p>一个好的实践是将站点目录和 Pages 分别存放在两个不同的 Git 仓库中，可以有效避免相互覆盖。<br>Hexo 在部署你的站点生成的文件时并不会更新你的站点目录，因此你应该手动提交并推送你的写作分支。</p>
+<p>来源：<a href="https://hexo.io/zh-cn/docs/one-command-deploymen" target="_blank" rel="noopener">Hexo文档</a></p>
+</blockquote>
+<p>因此我们要创建两个仓库，一个用来存放 <strong>站点目录</strong>，一个用来存放 <strong>Pages</strong>（public文件夹下的文件）。好的那么我们首先登陆 <a href="http://github.com/" target="_blank" rel="noopener">Github</a>，点击右上角的 “+”，然后在下拉菜单中选中 “New reponsitory” 后如下图：<br><a href="/images/github.png" data-caption data-fancybox="images"><img src="/images/github.png" alt></a></p>
+<h4 id="创建-pages-仓库">创建 pages 仓库<a class="post-anchor" href="#创建-pages-仓库"></a></h4><p>填写 “Repositroy name” 为 yourGithubName.github.io<strong>（注意这里必须是这种格式，这样别人才能通过 yourGithubName.github.io 访问你的博客）</strong>，点击 “Create repository” 按钮创建仓库。</p>
+<h4 id="创建站点目录仓库">创建站点目录仓库<a class="post-anchor" href="#创建站点目录仓库"></a></h4><p>过程同上，需要注意的是这次<strong>你的仓库名可以设置成任何你喜欢的，且为了你的文章等资源的隐私，你应该创建一个私有仓库。</strong></p>
+<h3 id="部署">部署<a class="post-anchor" href="#部署"></a></h3><p>打开项目根目录下的 <code>_config.yml</code> 文件，找到 <code>deploy</code> 部分，替换成以下代码</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">deploy:<br>&emsp;&emsp;<span class="hljs-built_in">type</span>: git<br>&emsp;&emsp;repo: https://github.com/yourGithubName/yourGithubName.github.io //你的pages仓库地址<br>&emsp;&emsp;branch: master<br></code></pre></td></tr></tbody></table></figure>
+<p>安装部署包 <code>hexo-deployer-git</code>：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">cnpm install hexo-deployer-git --save<br></code></pre></td></tr></tbody></table></figure>
+<p>执行部署命令：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">hexo clean && hexo generate //清除缓存 && 生成新的 pages 文件<br>hexo deploy //部署<br></code></pre></td></tr></tbody></table></figure>
+<p>打开 <a href="https://github.com/yourGithubName.github.io" target="_blank" rel="noopener">https://github.com/yourGithubName.github.io</a> 便可以浏览你的博客了。</p>
+<h4 id="链接远程仓库">链接远程仓库<a class="post-anchor" href="#链接远程仓库"></a></h4><p>需要注意的是<strong>当前的站点目录源码还没有进行提交</strong>，需执行以下命令提交到远程仓库：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">git init //初始化.git<br>git add . //添加blog目录下的全部文件<br>git commit -m <span class="hljs-string">'注释'</span> //提交到本地仓库<br>git remote add origin yourRepository（站点目录仓库） //添加远程仓库源<br>git push -u origin master //将本地master的更新流设置成远程master并且将代码push到远程<br></code></pre></td></tr></tbody></table></figure>
+
+<h2 id="结语">结语<a class="post-anchor" href="#结语"></a></h2><p>至此一个简易的博客已经完成了，你可以创建、发表博文，并部署在线上供大家阅读。不过相信阅历无数的”老司机”们一定会有疑问，就这？这么丑怎么见人？评论模块都没有，说好的交流呢？咳咳，下篇我将带大家配置喜欢的主题并选配博客更多的功能模块。</p>
+</body></html>
+
+  <!-- 
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+   -->
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/20200412/hexo_2/">从零开始搭建个人博客（二）</a>
+        
+    </div>
+    <div class="item right">
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://ddddderek.github.io">derek</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://ddddderek.github.io/20200411/hexo_1/">https://ddddderek.github.io/20200411/hexo_1/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://ddddderek.github.io">derek</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://ddddderek.github.io">derek</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 
+            |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\"],\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"\",\"access_token\":\"xxxxx\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

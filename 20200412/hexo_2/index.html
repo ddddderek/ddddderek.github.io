@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="derek, 博客, 前端" />
+    <meta name="description" content="derek|博客|前端|" />
+    
+    <title>
+      从零开始搭建个人博客（二） - derek的博客
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="derek的博客" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#主题"><span class="toc-text">主题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装和基础配置"><span class="toc-text">安装和基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#站内搜索"><span class="toc-text">站内搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码高亮"><span class="toc-text">代码高亮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#置顶"><span class="toc-text">置顶</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#评论"><span class="toc-text">评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RSS"><span class="toc-text">RSS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-text">结语</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          Home
+        </a>
+        
+        <a href="/archives" class="">
+          Archives
+        </a>
+        
+        <a href="/categories" class="">
+          Categories
+        </a>
+        
+        <a href="/tags" class="">
+          Tags
+        </a>
+        
+        <a href="/about" class="">
+          About
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">derek</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">derek</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            Home
+          </a>
+          
+          <a href="/archives" class="">
+            Archives
+          </a>
+          
+          <a href="/categories" class="">
+            Categories
+          </a>
+          
+          <a href="/tags" class="">
+            Tags
+          </a>
+          
+          <a href="/about" class="">
+            About
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/ddddderek" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-QQ"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">从零开始搭建个人博客（二）</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/04/12</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Usage">Usage</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/Hexo">Hexo</a>
+                  
+                
+                  
+                    <a href="/tags/Github">Github</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><p>通过上篇文章地讲述，相信大家已经能自由地编写、浏览自己的博客了，并且博客的 <strong>站点目录</strong> 源码也能有效地管理。本文将带你进行<code>主题</code>、<code>代码高亮</code>、<code>文章置顶</code>、<code>评论</code>等功能地配置，来使你的博客更丰富。</p>
+<h2 id="主题">主题<a class="post-anchor" href="#主题"></a></h2><p>打开 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 官网，切换到 “Themes Tab” 下，选择你喜欢的主题，然后按照文档进行主题基础配置和功能的选配。本文我将以 <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">A-Huhu</a> 主题为例进行主题的配置，其他主题的配置过程也大体相同。</p>
+<h3 id="安装和基础配置">安装和基础配置<a class="post-anchor" href="#安装和基础配置"></a></h3><p>主题的安装有两种方式，一种是直接到对应的主题仓库下载压缩包，然后解压到工程根目录下的 <code>themes</code> 文件夹下。另一种方式是将主题<code>fork</code>到自己的仓库，然后 <code>clone</code> 添加到自己的工程中，通过 <code>Git</code>进行源码的管理。对比两种方式，显然第一种方式更为简单，但考虑到后期维护成本——如主题功能迭代时，我们想在我们自己的博客添加同样的功能模块等，这里我选择使用第二种方式。</p>
+<p>首先将选择的主题 <code>fork</code> 到自己的仓库，然后打开命令行工具，切换到工程的根目录执行：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">git submodule add yourOwnRepositotyThemeUrl themes/hexo-theme-huhu //添加工程子模块到主题目录下<br></code></pre></td></tr></tbody></table></figure>
+<p>执行成功后，根目录下会多一个 <code>.gitmodules</code> 文件，内容如下：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">[submodule "themes/hexo-theme-huhu"]<br>	path = themes/hexo-theme-huhu<br>	url = yourOwnRepositotyThemeUrl<br></code></pre></td></tr></tbody></table></figure>
+<p>添加子模块的更新流：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">git remote add upstream https://github.com/shixiaohu2206/hexo-theme-huhu.git<br></code></pre></td></tr></tbody></table></figure>
+<p>这样当主题的源码更新时，你便可以执行以下命令进行代码的同步：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">git fetch upstream<br>git merge upstream<br></code></pre></td></tr></tbody></table></figure>
+<p>添加完工程的子模块并设置好更新流后，安装主题所需依赖：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">cnpm install --save cheerio //hexo-cli版本升级移除了cheerio，但是主题需要<br>cnpm install --save shelljs //用于requiresJS打包<br></code></pre></td></tr></tbody></table></figure>
+<p>打开根目录下的 <code>_config.yml</code> 文件，将默认主题修改为选配主题：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">theme: hexo-theme-huhu<br></code></pre></td></tr></tbody></table></figure>
+<p>新增友链配置内容：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">friends:<br>&emsp;&emsp;- name: '名字'<br>&emsp;&emsp;time: '时间'<br>&emsp;&emsp;url: '地址'<br>&emsp;&emsp;logo: '头像'<br>&emsp;&emsp;intro: '个人介绍'<br></code></pre></td></tr></tbody></table></figure>
+<p>新建 <code>about</code>，<code>tags</code>，<code>categories</code>，<code>friends</code> 页面：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">hexo new page <span class="hljs-string">"about"</span> //生成关于页面<br>hexo new page <span class="hljs-string">"tags"</span> //生成标签页面<br>hexo new page <span class="hljs-string">"friends"</span> //生成友链页面<br>hexo new page <span class="hljs-string">"categories"</span> //生成分类页面<br></code></pre></td></tr></tbody></table></figure>
+<p>其中 <code>about</code> 页面没有布局文件，直接以 <a href="https://markdown-zh.readthedocs.io/en/latest/" target="_blank" rel="noopener">markdown</a> 格式渲染。其余三个页面可以分别在对应文件夹下的 <code>index.md</code> 文件中的 <code>Front-matter</code> 区域添加各自的布局方式：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">layout: tags // blog/<span class="hljs-built_in">source</span>/tags/index.md<br></code></pre></td></tr></tbody></table></figure>
+<p>启动本地服务：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">hexo server<br></code></pre></td></tr></tbody></table></figure>
+<p>此时你应该可以在 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 看见一个”崭新”的博客了，是不是很漂亮。</p>
+<h3 id="站内搜索">站内搜索<a class="post-anchor" href="#站内搜索"></a></h3><p>安装 <code>hexo-generator-json-content</code> 插件，用于生成站内搜索文件：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><code class="hljs bash">cnpm install --save hexo-generator-json-content<br></code></pre></td></tr></tbody></table></figure>
+
+<p>打开根目录下的 <code>_config.yml</code> 文件，添加配置项：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">jsonContent:<br>&emsp;&emsp;dateFormat: YYYY/MM/DD<br>&emsp;&emsp;pages: false<br>&emsp;&emsp;posts:<br>&emsp;&emsp;&emsp;&emsp;tags: true<br>&emsp;&emsp;&emsp;&emsp;title: true<br>&emsp;&emsp;&emsp;&emsp;date: true<br>&emsp;&emsp;&emsp;&emsp;text: true<br>&emsp;&emsp;&emsp;&emsp;permalink: true<br>&emsp;&emsp;&emsp;&emsp;photos: true<br>&emsp;&emsp;file: content.json<br></code></pre></td></tr></tbody></table></figure>
+
+<h3 id="代码高亮">代码高亮<a class="post-anchor" href="#代码高亮"></a></h3><ul>
+<li>自定义高亮样式：<ul>
+<li>将 hljs 参数的值设置为 true，打开根目录下的 <code>_config.yml</code> 文件，添加配置项：</li>
+<li>复制 <a href="https://highlightjs.org/static/demo/" target="_blank" rel="noopener">highlight.js 官网</a> 的 css 文件替换 blog/themes/huhu/source/style/highlight.styl<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">highlight:<br>&emsp;&emsp;enable: true<br>&emsp;&emsp;hljs: true #新增hljs参数，并设为true，不然无法使用highlight.js 官方的 css<br>&emsp;&emsp;line_number: false #暂不支持行号<br>&emsp;&emsp;auto_detect: false #这一项也关闭，若开启有可能报错<br>&emsp;&emsp;tab_replace:<br></code></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="置顶">置顶<a class="post-anchor" href="#置顶"></a></h3><p>替换官方插件：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">cnpm uninstall hexo-generator-index --save #卸载官方插件<br>cnpm install hexo-generator-index-pin-top --save #安装插件<br></code></pre></td></tr></tbody></table></figure>
+<p>在 <code>.md</code> 文件的 <code>Front-matter</code> 区域新增 top: 1 即可，top 值越大，越靠前展示：<br><a href="/images/hot.png" data-caption data-fancybox="images"><img src="/images/hot.png" alt></a></p>
+<h3 id="评论">评论<a class="post-anchor" href="#评论"></a></h3><p>该主题支持 <a href="https://valine.js.org/" target="_blank" rel="noopener">valine</a> 和 <a href="http://changyan.kuaizhan.com/" target="_blank" rel="noopener">畅言评论</a> 两种平台的接入，可以自行选择，本文选择前者。</p>
+<blockquote>
+<ol>
+<li>注册登陆平台</li>
+<li>完成实名认证 </li>
+<li>创建应用 </li>
+<li>进入应用点击左侧一级菜单的 “设置” 按钮 </li>
+<li>点击二级菜单的 “应用 Keys” 即可看见该应用的配置信息</li>
+</ol>
+</blockquote>
+<p>打开根目录下的 <code>_config.yml</code> 文件，添加配置项：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">valine:<br>&emsp;&emsp;API_ID: 'yourValineAPI_ID'<br>&emsp;&emsp;API_KEY: 'yourValineAPI_KEY'<br></code></pre></td></tr></tbody></table></figure>
+<p>配置成功后如图：<br><a href="/images/Valine.png" data-caption data-fancybox="images"><img src="/images/Valine.png" alt></a></p>
+<h3 id="RSS">RSS<a class="post-anchor" href="#RSS"></a></h3><p>安装插件 <code>hexo-generator-feed</code></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">cnpm install --save hexo-generator-feed<br></code></pre></td></tr></tbody></table></figure>
+<p>打开根目录下的 <code>_config.yml</code> 文件，添加配置项：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><code class="hljs plain">feed:<br>&emsp;&emsp;type: atom<br>&emsp;&emsp;path: atom.xml<br>&emsp;&emsp;limit: 20<br>&emsp;&emsp;hub:<br>&emsp;&emsp;content:<br>&emsp;&emsp;content_limit: 140<br>&emsp;&emsp;content_limit_delim: ''<br>&emsp;&emsp;order_by: -date<br>&emsp;&emsp;icon: icon.png<br></code></pre></td></tr></tbody></table></figure>
+<h2 id="结语">结语<a class="post-anchor" href="#结语"></a></h2><p>至此你已经创建了一个较为完整的博客系统了，快开始你的写作之旅把。</p>
+</body></html>
+
+  <!-- 
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+   -->
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/20200414/reading1/">陪你读书JavaScript WEB前端（一）</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/20200411/hexo_1/">从零开始搭建个人博客（一）</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://ddddderek.github.io">derek</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://ddddderek.github.io/20200412/hexo_2/">https://ddddderek.github.io/20200412/hexo_2/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://ddddderek.github.io">derek</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://ddddderek.github.io">derek</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 
+            |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\"],\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"\",\"access_token\":\"xxxxx\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

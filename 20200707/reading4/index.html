@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="derek, 博客, 前端" />
+    <meta name="description" content="derek|博客|前端|" />
+    
+    <title>
+      陪你读书JavaScript WEB前端（四） - derek的博客
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="derek的博客" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#window对象"><span class="toc-text">window对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#window对象的属性"><span class="toc-text">window对象的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#间歇与超时"><span class="toc-text">间歇与超时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统对话框"><span class="toc-text">系统对话框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意-1"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#location对象"><span class="toc-text">location对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#location的属性"><span class="toc-text">location的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#location的方法"><span class="toc-text">location的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意-2"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#history对象"><span class="toc-text">history对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#history的属性"><span class="toc-text">history的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node节点"><span class="toc-text">Node节点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Node属性"><span class="toc-text">Node属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node方法"><span class="toc-text">Node方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#documnet节点"><span class="toc-text">documnet节点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性"><span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#element节点"><span class="toc-text">element节点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性-1"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法"><span class="toc-text">方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特性"><span class="toc-text">特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#非标准特性-用户自定义特性"><span class="toc-text">非标准特性&#x2F;用户自定义特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据集属性-data"><span class="toc-text">数据集属性 data-*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意-3"><span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text节点"><span class="toc-text">text节点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#属性-2"><span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法-1"><span class="toc-text">方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态加载JavaScript脚本"><span class="toc-text">动态加载JavaScript脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#动态插入的方式"><span class="toc-text">动态插入的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加载与阻塞"><span class="toc-text">加载与阻塞</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态加载CSS样式表"><span class="toc-text">动态加载CSS样式表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#动态加载的方式"><span class="toc-text">动态加载的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意-4"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态和静态合集"><span class="toc-text">动态和静态合集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注意-5"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#class和焦点管理"><span class="toc-text">class和焦点管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#焦点管理的意义"><span class="toc-text">焦点管理的意义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用字符串操作DOM节点"><span class="toc-text">使用字符串操作DOM节点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#innerText和textContent"><span class="toc-text">innerText和textContent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自闭和元素的处理"><span class="toc-text">自闭和元素的处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          Home
+        </a>
+        
+        <a href="/archives" class="">
+          Archives
+        </a>
+        
+        <a href="/categories" class="">
+          Categories
+        </a>
+        
+        <a href="/tags" class="">
+          Tags
+        </a>
+        
+        <a href="/about" class="">
+          About
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">derek</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">derek</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            Home
+          </a>
+          
+          <a href="/archives" class="">
+            Archives
+          </a>
+          
+          <a href="/categories" class="">
+            Categories
+          </a>
+          
+          <a href="/tags" class="">
+            Tags
+          </a>
+          
+          <a href="/about" class="">
+            About
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/ddddderek" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-QQ"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">陪你读书JavaScript WEB前端（四）</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/07/07</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Note">Note</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/JavaScript">JavaScript</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><p>本文整理范围为<strong>26~33期</strong>的内容。</p>
+<h2 id="window对象">window对象<a class="post-anchor" href="#window对象"></a></h2><blockquote>
+<p>每一个框架都会包含自己的<strong>window</strong>对象，都保存在<strong>frames</strong>集合中，可以通过索引或名称的方式访问。<br>如果一个页面存在多个<strong>window</strong>对象，那么每一个<strong>window</strong>对象都会包含原生的构造函数，且它们之间是相互独立、互不相等的。</p>
+</blockquote>
+<h3 id="window对象的属性">window对象的属性<a class="post-anchor" href="#window对象的属性"></a></h3><ul>
+<li>top(最外层的<code>window</code>对象)</li>
+<li>parent(当前<code>window</code>对象的上一层)</li>
+<li>self(当前的<code>window</code>对象)</li>
+<li>open方法<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* parma1: 要加载的url</span><br><span class="hljs-comment">* parma2: 窗口目标，可以取值frame的name, _top, _self, _parent, _blank(默认值)</span><br><span class="hljs-comment">* parma3: 特性字符串=>每一项使用逗号分隔，且不能包含空格；如果没有新开窗口，则此参数失效。</span><br><span class="hljs-comment">* parma3: 布尔类型，是否取代浏览器历史记录。</span><br><span class="hljs-comment">*/</span><br>open(parma1, parma2, parma3, parma4)<br></code></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<h3 id="间歇与超时">间歇与超时<a class="post-anchor" href="#间歇与超时"></a></h3><ul>
+<li>setTimeout</li>
+<li>setInterval<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/** setTimeout, setTimeout</span><br><span class="hljs-comment">* parma1: 回调函数 | 字符串(相当于调用了一次eval函数)</span><br><span class="hljs-comment">* parma2: 数字</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">var</span> timerId1 = setTimeout(param1, parma2)<br><span class="hljs-keyword">var</span> timerId2 = setInterval(param1, parma2)<br></code></pre></td></tr></tbody></table></figure></li>
+<li>clearTimeout(timerId1)</li>
+<li>clearInterval(timerId2)</li>
+</ul>
+<h3 id="注意">注意<a class="post-anchor" href="#注意"></a></h3><ul>
+<li>定时器是异步的</li>
+<li>使用setInterval时，H5规定的最小时间间隔是10ms，实际上在60Hz的显示器下最小时间间隔是16.7ms</li>
+<li>setInterval函数具有累积效应，使用setTimeout来代替它</li>
+<li>做动画效果时，使用requestAnimationFrame代替定时器会更流畅</li>
+</ul>
+<h3 id="系统对话框">系统对话框<a class="post-anchor" href="#系统对话框"></a></h3><ul>
+<li>alert(string) 无返回值</li>
+<li>confirm(string) 确认按钮返回true, 取消按钮返回false</li>
+<li>prompt(string，输入框默认值) 返回用户在输入框内输入的值</li>
+</ul>
+<h3 id="注意-1">注意<a class="post-anchor" href="#注意-1"></a></h3><ul>
+<li>三个对话框操作都是阻断式的</li>
+<li>对话框的样式是浏览器配置的</li>
+</ul>
+<h2 id="location对象">location对象<a class="post-anchor" href="#location对象"></a></h2><blockquote>
+<p><strong>location对象</strong>既是<strong>window</strong>对象的属性，也是<strong>document</strong>对象的属性。</p>
+</blockquote>
+<h3 id="location的属性">location的属性<a class="post-anchor" href="#location的属性"></a></h3><ul>
+<li>hash</li>
+<li>host</li>
+<li>hostname</li>
+<li>href</li>
+<li>pathname</li>
+<li>port</li>
+<li>protocol</li>
+<li>search</li>
+</ul>
+<h3 id="location的方法">location的方法<a class="post-anchor" href="#location的方法"></a></h3><ul>
+<li>replace 不会生成新的浏览记录</li>
+<li>reload(params:Boolean) 是否绕过缓存</li>
+</ul>
+<h3 id="注意-2">注意<a class="post-anchor" href="#注意-2"></a></h3><ul>
+<li>location对象的属性都是可写的，对除了hash属性之外的属性赋值，会导致页面刷新，且会生成一条新的浏览记录</li>
+</ul>
+<h2 id="history对象">history对象<a class="post-anchor" href="#history对象"></a></h2><h3 id="history的属性">history的属性<a class="post-anchor" href="#history的属性"></a></h3><ul>
+<li>go(params: 整数 | url) 前进/后退几页、</li>
+<li>back </li>
+<li>forward</li>
+<li>length 历史浏览记录的数量</li>
+</ul>
+<h2 id="Node节点">Node节点<a class="post-anchor" href="#Node节点"></a></h2><h3 id="Node属性">Node属性<a class="post-anchor" href="#Node属性"></a></h3><ul>
+<li>nodeType 返回 1~12 代表不同类型的节点</li>
+<li>nodeName 返回一个当前节点名称的字符串</li>
+<li>nodeValue 返回null或当前节点的值</li>
+<li>childNodes 返回nodeList对象</li>
+<li>parentNode 返回父节点</li>
+<li>previousSibling 返回前一个兄弟节点</li>
+<li>nextSibling 返回后一个兄弟节点</li>
+<li>firstChild 返回第一个子节点</li>
+<li>lastChild 返回最后一个子节点</li>
+<li>ownerDocument 当前文档的文档节点</li>
+</ul>
+<h3 id="Node方法">Node方法<a class="post-anchor" href="#Node方法"></a></h3><ul>
+<li>hasChildNodes 返回布尔类型 => true:有子节点，false：没有子节点</li>
+<li>appendChild(param: node类型节点)</li>
+<li>insertBefore(param1: 要插入的节点，param2: 参照节点)</li>
+<li>removeChild(param: 要删除子节点)</li>
+<li>replaceChild(param1: 要插入的节点，param2: 要替换掉的节点)</li>
+<li>cloneNode(parma: Boolean) 参数为ture，进行深度克隆；参数为false，克隆当前节点</li>
+<li>normalize 合并文本节点</li>
+</ul>
+<h2 id="documnet节点">documnet节点<a class="post-anchor" href="#documnet节点"></a></h2><h3 id="属性">属性<a class="post-anchor" href="#属性"></a></h3><ul>
+<li>documentElement 对应HTML节点</li>
+<li>body 对应HTML中的body节点</li>
+<li>title 对应网页的标题</li>
+<li>domain 对应网页域名信息，只能从低级域名改成高级域名</li>
+<li>referrer 获取前一个页面地址</li>
+</ul>
+<h2 id="element节点">element节点<a class="post-anchor" href="#element节点"></a></h2><h3 id="属性-1">属性<a class="post-anchor" href="#属性-1"></a></h3><ul>
+<li><strong>nodeType</strong>的值是1</li>
+<li><strong>nodeName</strong>的值是标签名字(大写的)</li>
+<li><strong>nodeValue</strong>的值是<strong>null</strong></li>
+<li><strong>id</strong> 可以获取元素节点的id值</li>
+<li><strong>title</strong> 可以获取元素的title值</li>
+<li><strong>dir</strong> 取值 <strong>ltr</strong> | <strong>rtl</strong> </li>
+<li><strong>className</strong></li>
+</ul>
+<h3 id="方法">方法<a class="post-anchor" href="#方法"></a></h3><ul>
+<li>getElementById</li>
+<li>getElementsByName</li>
+<li>getElementsByTagName</li>
+<li>getElementsByClassName</li>
+<li>querySelectorAll</li>
+<li>querySelector</li>
+<li>createElement</li>
+</ul>
+<h3 id="特性">特性<a class="post-anchor" href="#特性"></a></h3><p><strong>HTML</strong>标签特有的属性，称为该标签的特性。可以用<strong>node[‘attribute’]</strong>获取或设置。</p>
+<h4 id="非标准特性-用户自定义特性">非标准特性/用户自定义特性<a class="post-anchor" href="#非标准特性-用户自定义特性"></a></h4><ul>
+<li>getAttribute</li>
+<li>setAttribute</li>
+<li>hasAttribute</li>
+<li>removeAttribute</li>
+</ul>
+<p>使用这些方法读取/设置标准或者非标准特性，都是字符串形式。<br><strong>JavaScript</strong>中的关键字，在这些方法中是可以正常使用的。</p>
+<h4 id="数据集属性-data">数据集属性 data-*<a class="post-anchor" href="#数据集属性-data"></a></h4><p>在<code>JavaScript</code>中使用dataset[‘attribute’]形式获取属性。<br>连字符形式的属性用驼峰形式获取属性。<br><code>dataset</code>属性是<strong>实时双向</strong>接口。</p>
+<h4 id="注意-3">注意<a class="post-anchor" href="#注意-3"></a></h4><ol>
+<li>无论在HTML中属性书写的方式是大写或小写，在<code>JavaScript</code>中都使用小写。如果是多个单词组成的属性，那么使用驼峰规则。</li>
+<li><code>HTML</code>中一些属性在<code>JavaScript</code>中是关键字，使用时需要进行特殊转换。</li>
+<li><code>JavaScript</code>中获取的属性值可能是<code>字符串</code>、<code>布尔</code>、<code>数字</code>、<code>function</code>或<code>样式对象</code>。</li>
+<li>属性被设置后是无法删除的。</li>
+</ol>
+<h2 id="text节点">text节点<a class="post-anchor" href="#text节点"></a></h2><h3 id="属性-2">属性<a class="post-anchor" href="#属性-2"></a></h3><ul>
+<li><strong>nodeType</strong>的值是3</li>
+<li><strong>nodeName</strong>的值#text</li>
+<li><strong>nodeValue</strong>的值是文本本身</li>
+</ul>
+<h3 id="方法-1">方法<a class="post-anchor" href="#方法-1"></a></h3><ul>
+<li>appendData(param:文本)</li>
+<li>deleteData(param1:位置, param2:数量)</li>
+<li>insertData(param1:位置, param2:文本)</li>
+<li>replaceData(param1:位置, param2:数量, param3:文本)</li>
+<li>splitText(param:位置)</li>
+<li>substringData(param:位置, param2:数量)</li>
+<li>createTextNode(param:文本)</li>
+</ul>
+<h2 id="动态加载JavaScript脚本">动态加载JavaScript脚本<a class="post-anchor" href="#动态加载JavaScript脚本"></a></h2><ul>
+<li>当使用某个脚本时，不确定会在当前页面执行</li>
+<li>不确定用户加载的是哪个脚本</li>
+</ul>
+<h3 id="动态插入的方式">动态插入的方式<a class="post-anchor" href="#动态插入的方式"></a></h3><ul>
+<li>创建<code>script</code>标签，对<code>src</code>属性进行赋值，最后将标签插入文档中</li>
+<li>创建<code>script</code>标签，将<code>JavaScript</code>作为文本节点插入标签中，最后将标签插入文档中(ie 不支持将文本节点插入<code>script</code>中)</li>
+<li>创建<code>script</code>标签，将<code>JavaScript</code>作为文本赋值给<code>text</code>属性，最后将标签插入文档中(Safari 不支持)</li>
+</ul>
+<h3 id="加载与阻塞">加载与阻塞<a class="post-anchor" href="#加载与阻塞"></a></h3><blockquote>
+<p>如果是<strong>JavaScript</strong>脚本是直接写在<strong>HTML</strong>页面中时，脚本的加载和运行都是阻塞的。如果是动态加载的<strong>JavaScript</strong>脚本，下载脚本时不会阻塞，执行脚本会阻塞。</p>
+</blockquote>
+<h2 id="动态加载CSS样式表">动态加载CSS样式表<a class="post-anchor" href="#动态加载CSS样式表"></a></h2><ul>
+<li>网页换肤</li>
+</ul>
+<h3 id="动态加载的方式">动态加载的方式<a class="post-anchor" href="#动态加载的方式"></a></h3><ul>
+<li>创建<code>link</code>标签，设置标签的<code>type</code>和<code>rel</code>属性，再对标签的<code>href</code>属性进行赋值，最后将标签插入到<code>head</code>标签中</li>
+<li>创建<code>link</code>标签，将<code>CSS</code>作为文本节点插入标签中，最后将标签插入到<code>head</code>标签中(ie 不支持将文本节点插入<code>style</code>中)</li>
+<li>创建<code>link</code>标签，将<code>CSS</code>作为文本赋值给<code>text</code>属性，最后将标签插入到<code>head</code>标签中(Safari 不支持)</li>
+</ul>
+<h3 id="注意-4">注意<a class="post-anchor" href="#注意-4"></a></h3><ul>
+<li>对于加载<code>CSS</code>而言，如果想保持各个浏览器展示的一致性，要将创建出的标签插入<code>head</code>中</li>
+<li>加载远程<code>CSS</code>需要创建<code>link</code>标签，加载本地<code>CSS</code>需要创建<code>style</code>标签</li>
+<li>插入页面的<code>CSS</code>不可以删除，会影响页面样式</li>
+<li>浏览器渲染<code>CSS</code>是实时执行的，如果修改了<code>link</code>标签的<code>href</code>属性会直接反应在页面上</li>
+</ul>
+<h2 id="动态和静态合集">动态和静态合集<a class="post-anchor" href="#动态和静态合集"></a></h2><blockquote>
+<p><strong>NodeList</strong>是所有类型节点的合集。<strong>HTMLCollection</strong>是只包含元素节点的合集。 <strong>NodeList</strong>、<strong>HTMLCollection</strong>和<strong>NamedNodeMap</strong>都是动态合集。<strong>querySelector</strong>和<strong>querySelectorAll</strong>获取的<strong>NodeList</strong>是静态合集。</p>
+</blockquote>
+<h3 id="注意-5">注意<a class="post-anchor" href="#注意-5"></a></h3><ul>
+<li><code>NodeList</code>和<code>HTMLCollection</code>都是伪数组，ie中不能使用slice方式转换成数组</li>
+<li><code>NodeList</code>和<code>HTMLCollection</code>都有item方法</li>
+<li>使用<code>childNodes</code>获取的是<code>NodeList</code>，使用<code>children</code>获取的是<code>HTMLCollection</code></li>
+</ul>
+<h2 id="class和焦点管理">class和焦点管理<a class="post-anchor" href="#class和焦点管理"></a></h2><ul>
+<li>自定义<code>getElementsByClassName</code>(H5)方法，因为需要遍历所有节点，所以性能差。且返回的是<code>数组</code>，不是<code>HTMLCollection</code></li>
+<li>调用<code>classList</code>(H5)属性会获得一个<code>DOMTokenList</code>对象，该对象包含<code>add</code>，<code>remove</code>，<code>contains</code>，<code>toggle</code>四个方法</li>
+<li><code>activeElement</code>在文档加载期间的值是<code>null</code>，加载完成后会指向<code>body</code>，操作时指向被操作目标</li>
+</ul>
+<p>判断文档是否获取焦点，使用<code>document.hasFocus</code>方法，可以判断用户当前是否在和网页进行交互。</p>
+<p>文档元素获取焦点方式：</p>
+<ul>
+<li>文档默认加载</li>
+<li>用户操作(键盘、鼠标、触摸事件等)</li>
+<li>使用<code>focus</code>方法</li>
+</ul>
+<h3 id="焦点管理的意义">焦点管理的意义<a class="post-anchor" href="#焦点管理的意义"></a></h3><ul>
+<li>标准的焦点管理，可以让<code>HTML</code>开发标准化</li>
+<li>无障碍<code>Web</code>应用</li>
+<li>提升用户体验</li>
+</ul>
+<h2 id="使用字符串操作DOM节点">使用字符串操作DOM节点<a class="post-anchor" href="#使用字符串操作DOM节点"></a></h2><ul>
+<li>innerHTML</li>
+<li>outerHTML</li>
+</ul>
+<ol>
+<li>读模式下，不同浏览器返回结果不同(标签大小写，空格，缩进等)</li>
+<li>写模式下，设置的值和解析的<code>dom</code>结构可能会不一样(特殊字符转换，浏览器纠正等)</li>
+<li>插入<code>script</code>标签时，标签内<code>JavaScript</code>代码不会执行；插入<code>style</code>标签时，样式会生效(ie8 之前不支持<code>script</code>，<code>style</code>标签开头的字符串)</li>
+<li><code>table</code>标签不支持这两种属性</li>
+</ol>
+<ul>
+<li>innerText</li>
+<li>outerText</li>
+</ul>
+<ol>
+<li>写模式下，赋值的字符串会被转换，但展示结果与赋的值一样</li>
+<li><code>innerText</code>和<code>outerText</code>不是<code>H5</code>规范的标准</li>
+<li><code>outerText</code>基本用不到</li>
+<li>部分浏览器不兼容<code>innerText</code>，需要用<code>textContent</code>替代(火狐等)</li>
+</ol>
+<h3 id="innerText和textContent">innerText和textContent<a class="post-anchor" href="#innerText和textContent"></a></h3><p>区别：</p>
+<ul>
+<li><code>textContent</code>返回的值包含<code>script</code>和<code>style</code>标签内容，innerText不包含</li>
+<li><code>innerText</code>返回值依赖于页面的显示，<code>textContent</code>依赖的是代码内容</li>
+<li><code>innerText</code>赋值时会触发回流操作，<code>textContent</code>不一定会</li>
+<li><code>innerText</code>赋值时值会被格式化，<code>textContent</code>不会</li>
+<li>文本节点<code>nodeValue</code>，返回结果类似<code>textContent</code></li>
+</ul>
+<h4 id="自闭和元素的处理">自闭和元素的处理<a class="post-anchor" href="#自闭和元素的处理"></a></h4><p><code>br</code>，<code>hr</code>等标签设置<code>innerHTML</code>和<code>innerText</code>时，浏览器会将自闭和标签变成闭合标签，但是插入的内容不会显示在页面上。设置表单标签时可能会影响表单元素的<code>value</code>值，不同浏览器效果不同。</p>
+<h2 id="参考资料">参考资料<a class="post-anchor" href="#参考资料"></a></h2><p>JavaScript高级程序设计(第三版)</p>
+</body></html>
+
+  <!-- 
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+   -->
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="/20200907/reading5/">陪你读书JavaScript WEB前端（五）</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/20200531/reading3/">陪你读书JavaScript WEB前端（三）</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://ddddderek.github.io">derek</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://ddddderek.github.io/20200707/reading4/">https://ddddderek.github.io/20200707/reading4/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://ddddderek.github.io">derek</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://ddddderek.github.io">derek</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 
+            |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\"],\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"\",\"access_token\":\"xxxxx\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 

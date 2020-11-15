@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script>
+  var _hmt = _hmt || []
+  ;(function() {
+    var hm = document.createElement('script')
+    hm.src = 'https://hm.baidu.com/hm.js?5a0acc897fd96474a2c8f4deac84611a'
+    var s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(hm, s)
+  })()
+</script> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="derek, 博客, 前端" />
+    <meta name="description" content="derek|博客|前端|" />
+    
+    <title>
+      HTTP协议（web方向） - derek的博客
+    </title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    
+<link rel="stylesheet" href="/style/style.css">
+
+  <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="derek的博客" type="application/atom+xml">
+</head>
+  <body>
+    <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器输入URL后HTTP请求返回的完整过程"><span class="toc-text">浏览器输入URL后HTTP请求返回的完整过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络协议分层"><span class="toc-text">网络协议分层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP的三次握手"><span class="toc-text">HTTP的三次握手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URI、URL、URN"><span class="toc-text">URI、URL、URN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP报文格式"><span class="toc-text">HTTP报文格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP方法"><span class="toc-text">HTTP方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-CODE"><span class="toc-text">HTTP CODE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#跨域"><span class="toc-text">跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存"><span class="toc-text">缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#协商缓存"><span class="toc-text">协商缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie-和-Session"><span class="toc-text">Cookie 和 Session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP长连接"><span class="toc-text">HTTP长连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据协商"><span class="toc-text">数据协商</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Content-security-Policy"><span class="toc-text">Content-security-Policy</span></a></li></ol>
+    </div>
+    
+    <div id="fixed-menu-wrap">
+      <span class="iconfont icon-sousuo search-box menu-reset"></span>
+      <span class="icon-toc menu-reset">Toc</span>
+      <span class="iconfont icon-arrowup menu-reset"></span>
+    </div>
+    <div id="fixed-menu">
+      <span class="iconfont icon-menu-"></span>
+    </div>
+    <div id="progress">
+      <div class="line"></div>
+    </div>
+    <div id="search-shade" class="animated hiddenSearch hide">
+      <div class="input-wrap">
+        <span class="iconfont icon-sousuo search-box"></span>
+        <input type="text" placeholder="Search" />
+        <span class="iconfont icon-close"></span>
+      </div>
+      <div class="search-result">
+        <div class="meta">
+          <span><b id="result-count">0</b> results found</span>
+          <img src="/images/logo.jpeg" />
+        </div>
+        <ul id="result-box"></ul>
+      </div>
+    </div>
+    <div id="menu-mask" class="animated hideMenuMask hide">
+      <span class="iconfont icon-close"></span>
+      <div class="nav">
+        
+        <a href="/" class="">
+          Home
+        </a>
+        
+        <a href="/archives" class="">
+          Archives
+        </a>
+        
+        <a href="/categories" class="">
+          Categories
+        </a>
+        
+        <a href="/tags" class="">
+          Tags
+        </a>
+        
+        <a href="/about" class="">
+          About
+        </a>
+        
+      </div>
+    </div>
+    <div id="header">
+      <div class="intro">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <div class="author">derek</div>
+      </div>
+      <div class="nav">
+        <span class="iconfont icon-menu menu-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+    </div>
+    <div id="side" class="animated bounceInLeft">
+      <div class="shrink">
+        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        <span class="iconfont icon-menu toggle-icon"></span>
+        <a href="#" class="search-box">
+          <span class="iconfont icon-sousuo"></span>
+        </a>
+      </div>
+      <div class="magnify">
+        <div class="about">
+          <div class="author">derek</div>
+          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
+        </div>
+
+        <div class="nav">
+          
+          <a href="/" class="">
+            Home
+          </a>
+          
+          <a href="/archives" class="">
+            Archives
+          </a>
+          
+          <a href="/categories" class="">
+            Categories
+          </a>
+          
+          <a href="/tags" class="">
+            Tags
+          </a>
+          
+          <a href="/about" class="">
+            About
+          </a>
+          
+          <a href="#" class="search-box">
+            <span class="iconfont icon-sousuo"></span>
+          </a>
+        </div>
+        <div class="bottom">
+          <div class="follow">
+            
+            <a href="https://github.com/ddddderek" target="_block">
+              <span class="iconfont icon-github"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-zhihu"></span>
+            </a>
+            
+            <a href="" target="_block">
+              <span class="iconfont icon-QQ"></span>
+            </a>
+             
+            <a href="/atom.xml" target="_block">
+              <span class="iconfont icon-rss"></span>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div class="main animated bounceInRight delay-0.7s">
+        <article class="post-entry">
+    <div class="header">
+      
+      <div class="title">HTTP协议（web方向）</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/11/13</span>
+        </span>
+
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Note">Note</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/Http">Http</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><h2 id="浏览器输入URL后HTTP请求返回的完整过程">浏览器输入URL后HTTP请求返回的完整过程<a class="post-anchor" href="#浏览器输入URL后HTTP请求返回的完整过程"></a></h2><blockquote>
+<p>打开浏览器输入一个URL，首先会先进行<strong>Redirect</strong>判断，判断当前链接是否有永久指向变更。然后再看是否有缓存(<strong>APP cache</strong>)，如果没有缓存就进行<strong>DNS</strong>解析，拿到服务器ip后创建一个<strong>TCP</strong>链接，然后进行客户端的请求和服务端的响应操作。</p>
+</blockquote>
+<h2 id="网络协议分层">网络协议分层<a class="post-anchor" href="#网络协议分层"></a></h2><blockquote>
+<p><strong>应用层</strong>、<strong>传输层</strong>、<strong>网络层</strong>、<strong>数据链路层</strong>和<strong>物理层</strong>组成经典五层模型。</p>
+</blockquote>
+<p>应用层：(HTTP协议、FTP协议)</p>
+<ul>
+<li>为应用软件提供了很多服务</li>
+<li>构建于TCP协议之上</li>
+<li>屏蔽网络传输相关细节 </li>
+</ul>
+<p>传输层：(TPC/IP协议、UDP协议)</p>
+<ul>
+<li>向用户提供可靠的端到端服务(分包和分片传输、组装)</li>
+<li>传输层向高层屏蔽了下层数据通信细节 </li>
+</ul>
+<p>网络层：为数据在节点之间传输创建逻辑链路。<br>数据链路层：在通信实体间建立数据链路连接。<br>物理层：定义物理设备如果传输数据。</p>
+<h2 id="HTTP的三次握手">HTTP的三次握手<a class="post-anchor" href="#HTTP的三次握手"></a></h2><blockquote>
+<p>客户端发送一个标志位<strong>SYN=1，Seq=X</strong>的数据包，服务端接收到数据包后会开启一个<strong>TCP Socket</strong>端口返回给客户端一个标志位<strong>SYN=1，ACK=X+1，Seq=Y</strong>的数据包，然后客户端在发送一个<strong>ACK=Y+1，Seq=Z</strong>的数据包。</p>
+</blockquote>
+<h2 id="URI、URL、URN">URI、URL、URN<a class="post-anchor" href="#URI、URL、URN"></a></h2><p>URI:统一资源标志位，用来唯一标识互联网上的信息资源，包含URL和URN。<br>URL:统一资源定位器，<a href="http://user:pass@host.com:80/path?query=string#hash" target="_blank" rel="noopener">http://user:pass@host.com:80/path?query=string#hash</a><br>URN:永久统一资源定位符，很少用</p>
+<h2 id="HTTP报文格式">HTTP报文格式<a class="post-anchor" href="#HTTP报文格式"></a></h2><blockquote>
+<p><strong>首行</strong>(起始行)、<strong>首部</strong>、<strong>主体</strong>组成HTTP报文</p>
+</blockquote>
+<p>请求报文首行：GET /PATH HTTP/1.1<br>响应报文首行：HTTP/1.1 200 OK</p>
+<h3 id="HTTP方法">HTTP方法<a class="post-anchor" href="#HTTP方法"></a></h3><blockquote>
+<p>用来定义对于资源的操作，从定义上来讲有各自的语义。</p>
+</blockquote>
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>PUT</li>
+<li>DELETE</li>
+</ul>
+<h3 id="HTTP-CODE">HTTP CODE<a class="post-anchor" href="#HTTP-CODE"></a></h3><blockquote>
+<p>定义服务器对请求的处理结果，各个区间的code有各自的语义。</p>
+</blockquote>
+<ul>
+<li>1~199操作需要持续进行</li>
+<li>200~299操作成功</li>
+<li>300~399操作需要重定向</li>
+<li>400~499发送的请求有问题</li>
+<li>500~599服务器错误</li>
+</ul>
+<h3 id="注意">注意<a class="post-anchor" href="#注意"></a></h3><ul>
+<li>首行和主体之间要隔一空行</li>
+</ul>
+<h2 id="跨域">跨域<a class="post-anchor" href="#跨域"></a></h2><blockquote>
+<p>两个页面的<strong>协议</strong>，<strong>端口</strong>和<strong>域名</strong>都相同，则两个页面具有相同的源。向非同源的地址发送网络请求会产生<strong>跨域</strong>。</p>
+</blockquote>
+<p>跨域解决方式：</p>
+<ul>
+<li>设置Access-Control-Allow-Origin</li>
+<li>Jsonp</li>
+</ul>
+<p>跨域允许的请求方法：</p>
+<ul>
+<li>GET</li>
+<li>HEAD</li>
+<li>POST</li>
+</ul>
+<p>跨域允许的Content-Type：</p>
+<ul>
+<li>text/plain</li>
+<li>multipart/form-data</li>
+<li>application/x-<a href="http://www.form-urlencoded" target="_blank" rel="noopener">www.form-urlencoded</a></li>
+</ul>
+<p>cors预请求(向不同源的页面发送一个请求浏览器首先会发送一个预请求)：</p>
+<ul>
+<li>Access-Control-Allow-Headers</li>
+<li>Access-Control-Allow-Methods</li>
+<li>Access-Control-Max-Age(秒)</li>
+</ul>
+<h2 id="缓存">缓存<a class="post-anchor" href="#缓存"></a></h2><p>可缓存性：</p>
+<ul>
+<li>public 响应经过的所有代理服务器和客户端都可以进行缓存操作</li>
+<li>private 发起请求的浏览器客户端可进行缓存操作</li>
+<li>no-cache 可以缓存但是是否可以使用缓存需要到服务端进行验证</li>
+</ul>
+<p>到期：</p>
+<ul>
+<li>max-age(秒) 浏览器客户端生效</li>
+<li>s-maxage(秒) 代理服务器生效</li>
+<li>max-stale(秒) 缓存过期后的多少秒内有效</li>
+</ul>
+<p>重新验证：</p>
+<ul>
+<li>must-revalidate 客户端缓存资源过期后必须去服务端重新请求</li>
+<li>proxy-revalidate 代理服务器缓存资源过期后必须去服务端重新请求</li>
+</ul>
+<p>其他：</p>
+<ul>
+<li>no-store 不缓存</li>
+<li>no-transform 禁止代理服务器改变传输的内容</li>
+</ul>
+<h3 id="协商缓存">协商缓存<a class="post-anchor" href="#协商缓存"></a></h3><p>Last-Modified 上次修改时间</p>
+<ul>
+<li>If-Modified-Since</li>
+<li>If-Unmodified-Since</li>
+</ul>
+<p>Etag 数据签名</p>
+<ul>
+<li>If-Match</li>
+<li>If-None-Match</li>
+</ul>
+<h2 id="Cookie-和-Session">Cookie 和 Session<a class="post-anchor" href="#Cookie-和-Session"></a></h2><blockquote>
+<p><strong>Cookie</strong>是服务端通过<strong>Set-Cookie</strong>方法设置的，并且在同源下会在下次请求的请求头中自动带上的<strong>键值对</strong>。一个网站下可以设置多个<strong>Cookie</strong>。</p>
+</blockquote>
+<blockquote>
+<p><strong>Sesssion</strong>用户保存用户的状态，一般将<strong>Session</strong>的key存在<strong>Cookie</strong>中，以便于服务端读取用户状态。</p>
+</blockquote>
+<p>Cookie的属性：</p>
+<ul>
+<li>max-age、expires 设置过期时间</li>
+<li>Secure 只在HTTPS协议下发送</li>
+<li>HttpOnly 禁止通过document.cookie访问</li>
+</ul>
+<h2 id="HTTP长连接">HTTP长连接<a class="post-anchor" href="#HTTP长连接"></a></h2><blockquote>
+<p>一个HTTP请求在服务端响应后，不立即关掉当前的TCP连接的形式叫长连接。一般经常会在请求和响应头中设置<strong>Connection:keep-alive</strong>字段。</p>
+</blockquote>
+<h2 id="数据协商">数据协商<a class="post-anchor" href="#数据协商"></a></h2><p>请求头属性：</p>
+<ul>
+<li>Accept 数据格式</li>
+<li>Accept-Encoding 数据压缩方式</li>
+<li>Accept-Language 语言</li>
+<li>User-Agent 浏览器信息</li>
+</ul>
+<p>响应头属性：</p>
+<ul>
+<li>Content-Type 数据格式</li>
+<li>Content-Encoding 数据压缩方式</li>
+<li>Content-Language 语言</li>
+<li>X-Content-Type-Options:’nosniff’ 禁止浏览器预测数据格式</li>
+</ul>
+<h2 id="Content-security-Policy">Content-security-Policy<a class="post-anchor" href="#Content-security-Policy"></a></h2><p>CSP作用：</p>
+<ul>
+<li>限制资源获取</li>
+<li>报告资源获取越权</li>
+</ul>
+<p>限制方式：</p>
+<ul>
+<li>default-src 限制全局链接和请求</li>
+<li>制定资源类型(content-src、img-src、mainfest-src、font-src、meaid-src、style-src、script-src、frame-src、font-src)</li>
+</ul>
+<figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-string">'Content-security-Policy'</span>: <span class="hljs-string">'default-src http: https:'</span> <span class="hljs-comment">//只能通过外链的形式引入资源</span><br><span class="hljs-string">'Content-security-Policy'</span>: <span class="hljs-string">'default-src \'self\''</span> <span class="hljs-comment">//只能引入同域的资源</span><br><span class="hljs-string">'Content-security-Policy'</span>: <span class="hljs-string">'form-action \'self\''</span> <span class="hljs-comment">//限制form表单的提交</span><br><br><span class="hljs-comment">//汇报</span><br><span class="hljs-string">'Content-security-Policy'</span>: <span class="hljs-string">'default-src \'self\'; report-uri /report'</span> <span class="hljs-comment">//禁止加载且汇报给服务器</span><br><span class="hljs-string">'Content-security-Policy-Report-Only'</span>: <span class="hljs-string">'default-src \'self\'; report-uri /report'</span> <span class="hljs-comment">//允许加载但汇报给服务器</span><br></code></pre></td></tr></tbody></table></figure>
+
+
+
+
+</body></html>
+
+  <!-- 
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+   -->
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/20200924/reading6/">陪你读书JavaScript WEB前端（六）</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://ddddderek.github.io">derek</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://ddddderek.github.io/20201113/http/">https://ddddderek.github.io/20201113/http/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://ddddderek.github.io">derek</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
+        <footer>
+          <div class="copyright">
+            ©2020
+            <a href="https://ddddderek.github.io">derek</a> Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 
+            |
+            <a href="https://github.com/shixiaohu2206/hexo-theme-huhu" target="_blank" rel="noopener">hexo-theme-huhu</a>
+          </div>
+          
+        </footer>
+      </div>
+    </div>
+  </body>
+  
+</html>
+<script type="text/javascript">
+                  window.HUHU_CONFIG = JSON.parse("{\"share\":[\"weibo\",\"weixin\",\"qqkongjian\"],\"service_worker\":{\"open\":false},\"baidu_tongji\":{\"site_from\":\"2019/7/26\",\"site_id\":\"\",\"access_token\":\"xxxxx\"}}")
+                </script> <script type="text/javascript">window.addEventListener('load', function() {
+    
+    window.loadJs = function(d, m, a) {
+      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+      var b = document.createElement('script')
+      b.defer = true
+      b.setAttribute('type', 'text/javascript')
+      b.setAttribute('charset', 'UTF-8')
+      b.setAttribute('async', 'true')
+      b.setAttribute('src', d)
+      m && b.setAttribute('data-main', '/scripts/app-built')
+      if (typeof a === 'function') {
+        if (window.attachEvent) {
+          b.onreadystatechange = function() {
+            var e = b.readyState
+            if (e === 'loaded' || e === 'complete') {
+              b.onreadystatechange = null
+              a()
+            }
+          }
+        } else {
+          b.onload = a
+        }
+      }
+      c.appendChild(b)
+    }
+    window.loadJs && window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {require.config({"paths":{"util":"util","share":"share","search":"search","pagemap":"pagemap.min","registerSW":"registerSW","valine":"cdn/Valine.min","av":["https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min"],"pjax":["https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min"],"jquery":["https://cdn.bootcss.com/jquery/3.4.1/jquery.min"],"confirm":["https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min"],"fancybox":["https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min"],"chart":["https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.bundle.min"]},"map":{"*":{"css":"https://cdn.bootcss.com/require-css/0.1.10/css.min.js"}},"shim":{"fancybox":{"deps":["css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"]},"confirm":{"deps":["css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css"]},"chart":{"deps":["css!https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.min.css"]}},"waitSeconds":3})})
+  })</script> <script type="text/javascript">
+                  ;(function() {
+                    var bp = document.createElement('script')
+                    var curProtocol = window.location.protocol.split(':')[0]
+                    if (curProtocol === 'https') {
+                      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+                    } else {
+                      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+                    }
+                    var s = document.getElementsByTagName('script')[0]
+                    s.parentNode.insertBefore(bp, s)
+                  })()
+                </script> 
